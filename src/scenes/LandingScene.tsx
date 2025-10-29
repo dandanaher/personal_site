@@ -54,6 +54,7 @@ export const LandingScene = ({ onNavigate }: LandingSceneProps) => {
         {ORBS.map((orb, index) => (
           <GlassOrb
             key={orb.id}
+            id={orb.id}
             position={orbPositions[index].position}
             label={orb.label}
             iconPath={orb.iconPath as string | undefined}

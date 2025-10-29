@@ -10,9 +10,10 @@ interface GlassOrbProps {
   iconPath?: string;
   angle: number;
   onClick: () => void;
+  id: string;
 }
 
-export const GlassOrb = ({ position, iconPath, angle, onClick }: GlassOrbProps) => {
+export const GlassOrb = ({ position, iconPath, angle, onClick, id }: GlassOrbProps) => {
   const meshRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);
 
@@ -36,6 +37,8 @@ export const GlassOrb = ({ position, iconPath, angle, onClick }: GlassOrbProps) 
         onClick={onClick}
         onPointerOver={() => setHovered(true)}
         onPointerOut={() => setHovered(false)}
+        renderOrder={0}
+        name={`orb-${id}`}
       >
         <sphereGeometry args={[1, 64, 64]} />
         <MeshTransmissionMaterial
@@ -50,12 +53,12 @@ export const GlassOrb = ({ position, iconPath, angle, onClick }: GlassOrbProps) 
           // Subtle glow on hover
           emissive={hovered ? '#a8d4bd' : '#000000'}
           emissiveIntensity={hovered ? 0.3 : 0}
-          // Backside
-          backside={true}
-          backsideThickness={0.3}
           // High quality rendering - increased samples and resolution for crisp glass
           samples={32}
           resolution={1024}
+          // Enable transparency for proper rendering
+          transparent={true}
+          toneMapped={false}
         />
       </mesh>
 

@@ -37,14 +37,16 @@ const BillboardContent = ({ iconPath, scale = 1.3 }: IconBillboardProps) => {
   });
 
   return (
-    <mesh ref={meshRef} position={[0, 0, 0]}>
+    <mesh ref={meshRef} position={[0, 0, 0]} renderOrder={1}>
       <planeGeometry args={[scale, scale]} />
       <meshBasicMaterial
         map={texture}
         transparent={true}
-        opacity={0.95}
+        opacity={1.0}
         side={THREE.DoubleSide}
-        depthWrite={false}
+        depthWrite={true}
+        depthTest={true}
+        toneMapped={false}
       />
     </mesh>
   );

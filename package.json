@@ -1,0 +1,43 @@
+{
+  "name": "personal_site",
+  "version": "2.0.0",
+  "description": "Dan Danaher's personal website with 3D glass orb navigation",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dandanaher/personal_site.git"
+  },
+  "keywords": [
+    "portfolio",
+    "three.js",
+    "react",
+    "3d"
+  ],
+  "author": "Dan Danaher",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dandanaher/personal_site/issues"
+  },
+  "homepage": "https://github.com/dandanaher/personal_site#readme",
+  "devDependencies": {
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@types/three": "^0.180.0",
+    "@vitejs/plugin-react": "^5.1.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.12"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.7.6",
+    "@react-three/fiber": "^9.4.0",
+    "framer-motion": "^12.23.24",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "three": "^0.180.0"
+  }
+}

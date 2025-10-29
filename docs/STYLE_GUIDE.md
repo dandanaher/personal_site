@@ -1,25 +1,31 @@
 # Style Guide
 
 ## Design Philosophy
-Modern, minimal, unique. The site should feel sophisticated and technical without being overwhelming. Lots of negative space, subtle animations, and a focus on the 3D glass marble aesthetic.
+Modern, minimal, unique. The site should feel sophisticated and technical without being overwhelming. Lots of negative space, subtle animations, and a focus on the 3D glass marble aesthetic inspired by a light mint/seafoam green glass marble.
+
+**Note**: No emojis should be used in the UI. Use symbols, unicode characters, or text instead for a cleaner, more professional aesthetic.
 
 ## Color Palette
 
-### Dark Mode (Default)
-- **Background**: `#0a0e12` - Deep dark blue-black
-- **Surface**: `#141a21` - Slightly lighter surface
-- **Text Primary**: `#e8eef5` - Off-white
-- **Text Secondary**: `#94a3b8` - Muted blue-gray
-- **Accent Glass**: `#10b981` - Emerald green (primary glass color)
-- **Accent Glow**: `#34d399` - Lighter emerald (for hover/glow effects)
-
-### Light Mode
+### Light Mode (Default)
 - **Background**: `#f8fafc` - Very light blue-gray
 - **Surface**: `#ffffff` - Pure white
 - **Text Primary**: `#0f172a` - Very dark blue
 - **Text Secondary**: `#475569` - Medium gray-blue
-- **Accent Glass**: `#059669` - Darker emerald green
-- **Accent Glow**: `#10b981` - Emerald green (for hover/glow)
+- **Accent**: `#9dcdb4` - Soft mint/seafoam (for UI elements like buttons)
+- **Glass Tint**: `#f5fdf9` - Nearly transparent with hint of mint (orb color)
+- **Glass Hover**: `#f0f9f5` - Slightly more visible mint on hover
+- **Glow Effect**: `#d4f0e3` - Subtle mint glow
+
+### Dark Mode
+- **Background**: `#0a0e12` - Deep dark blue-black
+- **Surface**: `#141a21` - Slightly lighter surface
+- **Text Primary**: `#e8eef5` - Off-white
+- **Text Secondary**: `#94a3b8` - Muted blue-gray
+- **Accent**: `#9dcdb4` - Soft mint/seafoam (for UI elements)
+- **Glass Tint**: `#f5fdf9` - Nearly transparent with hint of mint
+- **Glass Hover**: `#f0f9f5` - Slightly more visible mint on hover
+- **Glow Effect**: `#d4f0e3` - Subtle mint glow
 
 ### Utility Colors
 - **Success**: `#22c55e`
@@ -64,19 +70,25 @@ Based on 8px grid system:
 ## 3D Material Properties
 
 ### Glass Orbs
-- **Color**: Emerald green tint (`#10b981`)
-- **Transparency**: 0.15 opacity
-- **Roughness**: 0.1 (very smooth/glossy)
+The orbs should appear almost completely transparent with just a very subtle seafoam green tint - think of clear glass with the faintest hint of color.
+
+- **Color**: Nearly clear with subtle mint tint (`#f5fdf9` - almost white)
+- **Transparency**: Full transmission (1.0) for realistic glass
+- **Opacity**: 0.95
+- **Roughness**: 0.05 (extremely smooth/glossy)
 - **Metalness**: 0 (non-metallic)
-- **Index of Refraction (IOR)**: 1.5 (realistic glass)
+- **Index of Refraction (IOR)**: 1.45 (realistic glass)
 - **Transmission**: 1 (full transmission for realistic glass)
-- **Thickness**: 0.5 (glass thickness for refraction)
-- **Envmap Intensity**: 0.8 (subtle environment reflections)
+- **Thickness**: 0.2 (thin glass for maximum transparency)
+- **Chromatic Aberration**: 0.01 (very subtle color separation effect)
+- **Samples**: 16 (quality of transmission)
+- **Resolution**: 256 (transmission texture resolution)
 
 ### Hover/Active State
-- **Emission**: Add green glow (`#34d399`)
-- **Emission Intensity**: 0.3 - 0.5
-- **Scale**: 1.1x (subtle grow)
+- **Color**: Very light mint (`#f0f9f5` - still nearly transparent)
+- **Emission**: Subtle seafoam glow (`#d4f0e3`)
+- **Emission Intensity**: 0 (default) → 0.15 (hover)
+- **Scale**: 1.0 (default) → 1.15 (hover) with smooth lerp
 
 ## Lighting Setup
 

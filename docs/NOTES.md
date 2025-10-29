@@ -1,5 +1,9 @@
 # Development Notes
 
+## Development Principles
+
+**Task Completion Ownership**: When implementing a feature, complete it fully. Don't leave partial implementations or expect the user to finish tasks. If there are limitations (e.g., inability to save binary files), be upfront about them immediately and provide clear, complete instructions for any manual steps required.
+
 ## Project Initialization - 2025-10-29
 
 ### Initial Setup
@@ -25,10 +29,27 @@ Using React Three Fiber (R3F) instead of vanilla Three.js for:
 4. Easier state management with React hooks
 
 #### Glass Material Implementation
-Planning to use:
-- `MeshPhysicalMaterial` for realistic glass (supports transmission, IOR, etc.)
-- Possible alternatives: Custom shader material if more control is needed
-- Environment map for reflections (using drei's `Environment` component)
+Using `MeshTransmissionMaterial` from drei for realistic glass:
+- Supports transmission, IOR, thickness, chromatic aberration
+- Subtle mint/seafoam green tint (#cceedd)
+- Environment map ("studio" preset) for depth and reflections
+- High blur (0.8) for subtle, minimal reflections
+
+#### Icon Billboard System
+Each orb contains a camera-facing billboard sprite displaying an icon:
+- **Implementation**: `IconBillboard` component using plane geometry with `lookAt()` for camera-facing behavior
+- **Texture Loading**: Suspense-wrapped texture loader for graceful handling of missing assets
+- **Positioning**: Centered at orb origin (0, 0, 0) relative to orb group
+- **Scaling**: 0.8 units (80% of orb diameter) for visibility through glass
+- **Material**: `meshBasicMaterial` with transparency for clean appearance
+
+**Icon Assets Required** (place in `/public/icons/`):
+- `me_icon.png` - Clipboard/notepad icon
+- `library_icon.png` - Person/user icon
+- `projects_icon.png` - Rocket icon
+- `thoughts_icon.png` - Thought bubble icon
+
+Recommended specs: 512x512px or 1024x1024px PNG with transparency, white/light colored
 
 #### Navigation Strategy
 - Single-page application with section-based navigation

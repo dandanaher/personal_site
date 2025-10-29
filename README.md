@@ -43,6 +43,17 @@ npm run preview
 
 The dev server will start at `http://localhost:3000`
 
+### Icon Assets Setup
+
+**Required**: The glass orbs are configured to display icons. Save the 4 icon PNG files to `/public/icons/`:
+
+- `me_icon.png` - Clipboard/notepad icon (white/light, 512x512px recommended)
+- `library_icon.png` - Person/user icon (white/light)
+- `projects_icon.png` - Rocket icon (white/light)
+- `thoughts_icon.png` - Thought bubble icon (white/light)
+
+The code is already configured to load these files. Once saved, the icons will appear as camera-facing billboards inside each glass orb.
+
 ## Project Structure
 
 ```

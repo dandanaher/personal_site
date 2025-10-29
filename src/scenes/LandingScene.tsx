@@ -9,10 +9,10 @@ interface LandingSceneProps {
 }
 
 const ORBS = [
-  { id: 'me', label: 'Me', icon: '🧑', color: '#10b981' },
-  { id: 'library', label: 'Library', icon: '📚', color: '#10b981' },
-  { id: 'projects', label: 'Projects', icon: '🚀', color: '#10b981' },
-  { id: 'thoughts', label: 'Thoughts', icon: '💭', color: '#10b981' },
+  { id: 'me', label: 'Me', iconPath: '/icons/me_icon.png', color: '#9dcdb4' },
+  { id: 'library', label: 'Library', iconPath: '/icons/library_icon.png', color: '#9dcdb4' },
+  { id: 'projects', label: 'Projects', iconPath: '/icons/projects_icon.png', color: '#9dcdb4' },
+  { id: 'thoughts', label: 'Thoughts', iconPath: '/icons/thoughts_icon.png', color: '#9dcdb4' },
 ];
 
 export const LandingScene = ({ onNavigate }: LandingSceneProps) => {
@@ -41,20 +41,13 @@ export const LandingScene = ({ onNavigate }: LandingSceneProps) => {
 
   return (
     <>
-      {/* Lighting */}
-      <ambientLight intensity={0.3} />
-      <pointLight position={[10, 10, 10]} intensity={1} />
-      <pointLight position={[-10, -10, -10]} intensity={0.5} color="#60a5fa" />
-      <spotLight
-        position={[0, 10, 0]}
-        angle={0.3}
-        penumbra={1}
-        intensity={0.5}
-        castShadow
-      />
+      {/* Lighting with subtle environment for depth */}
+      <ambientLight intensity={1.0} />
+      <directionalLight position={[5, 5, 5]} intensity={1.2} color="#ffffff" />
+      <pointLight position={[-5, 3, -5]} intensity={0.6} color="#ffffff" />
 
-      {/* Environment for reflections */}
-      <Environment preset="city" />
+      {/* Uniform environment for consistent reflections across all orbs */}
+      <Environment preset="studio" background={false} blur={0.8} />
 
       {/* Orbiting orbs group */}
       <group ref={groupRef}>
@@ -63,7 +56,7 @@ export const LandingScene = ({ onNavigate }: LandingSceneProps) => {
             key={orb.id}
             position={orbPositions[index].position}
             label={orb.label}
-            icon={orb.icon}
+            iconPath={orb.iconPath as string | undefined}
             angle={orbPositions[index].angle}
             onClick={() => onNavigate(orb.id)}
           />

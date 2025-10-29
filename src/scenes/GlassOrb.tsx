@@ -2,16 +2,17 @@ import { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { MeshTransmissionMaterial } from '@react-three/drei';
 import * as THREE from 'three';
+import { IconBillboard } from './IconBillboard';
 
 interface GlassOrbProps {
   position: [number, number, number];
   label: string;
-  icon: string;
+  iconPath?: string;
   angle: number;
   onClick: () => void;
 }
 
-export const GlassOrb = ({ position, angle, onClick }: GlassOrbProps) => {
+export const GlassOrb = ({ position, iconPath, angle, onClick }: GlassOrbProps) => {
   const meshRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);
 
@@ -29,6 +30,7 @@ export const GlassOrb = ({ position, angle, onClick }: GlassOrbProps) => {
 
   return (
     <group position={position}>
+      {/* Glass sphere */}
       <mesh
         ref={meshRef}
         onClick={onClick}
@@ -37,21 +39,28 @@ export const GlassOrb = ({ position, angle, onClick }: GlassOrbProps) => {
       >
         <sphereGeometry args={[1, 64, 64]} />
         <MeshTransmissionMaterial
-          // Glass properties
-          transmission={1}
-          thickness={0.5}
-          roughness={0.1}
+          // Glass transmission for depth with environment
+          transmission={0.95}
+          thickness={0.4}
+          roughness={0.05}
           ior={1.5}
-          chromaticAberration={0.02}
-          // Color and emission
-          color={hovered ? '#34d399' : '#10b981'}
-          emissive={hovered ? '#34d399' : '#10b981'}
-          emissiveIntensity={hovered ? 0.5 : 0.1}
-          // Performance
-          samples={16}
-          resolution={256}
+          chromaticAberration={0.025}
+          // Subtle mint/seafoam green tint
+          color={hovered ? '#b8e6cf' : '#cceedd'}
+          // Subtle glow on hover
+          emissive={hovered ? '#a8d4bd' : '#000000'}
+          emissiveIntensity={hovered ? 0.3 : 0}
+          // Backside
+          backside={true}
+          backsideThickness={0.3}
+          // High quality rendering - increased samples and resolution for crisp glass
+          samples={32}
+          resolution={1024}
         />
       </mesh>
+
+      {/* Icon billboard inside the orb - only render if iconPath exists */}
+      {iconPath && <IconBillboard iconPath={iconPath} />}
 
       {/* Invisible larger hitbox for easier interaction */}
       <mesh

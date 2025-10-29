@@ -45,18 +45,15 @@ function App() {
       <div className={`canvas-container ${currentSection !== 'landing' ? 'hidden' : ''}`}>
         <Canvas
           camera={{ position: [0, 2, 10], fov: 50 }}
-          gl={{ alpha: true, antialias: true }}
+          gl={{
+            alpha: true,
+            antialias: true,
+            powerPreference: 'high-performance'
+          }}
+          dpr={[1, 2]}
         >
           <LandingScene onNavigate={handleNavigate} />
         </Canvas>
-
-        {/* Landing page text overlay */}
-        {currentSection === 'landing' && (
-          <div className="landing-overlay">
-            <h1 className="landing-title">Dan Danaher</h1>
-            <p className="landing-subtitle">Click an orb to explore</p>
-          </div>
-        )}
       </div>
 
       {/* Page content */}

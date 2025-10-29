@@ -19,8 +19,8 @@ body {
   --color-surface: #141a21;
   --color-text-primary: #e8eef5;
   --color-text-secondary: #94a3b8;
-  --color-accent: #10b981;
-  --color-accent-glow: #34d399;
+  --color-accent: #9dcdb4;
+  --color-accent-glow: #b8ddc9;
 
   /* 3D Scene */
   --ambient-light-intensity: 0.3;
@@ -33,8 +33,8 @@ body {
   --color-surface: #ffffff;
   --color-text-primary: #0f172a;
   --color-text-secondary: #475569;
-  --color-accent: #059669;
-  --color-accent-glow: #10b981;
+  --color-accent: #9dcdb4;
+  --color-accent-glow: #b8ddc9;
 
   /* 3D Scene */
   --ambient-light-intensity: 0.5;

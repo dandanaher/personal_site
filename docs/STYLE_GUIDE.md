@@ -8,7 +8,7 @@ Modern, minimal, unique. The site should feel sophisticated and technical withou
 ## Color Palette
 
 ### Light Mode (Default)
-- **Background**: `#f8fafc` - Very light blue-gray
+- **Background**: `#FAF8F4` - Warm off-white
 - **Surface**: `#ffffff` - Pure white
 - **Text Primary**: `#0f172a` - Very dark blue
 - **Text Secondary**: `#475569` - Medium gray-blue

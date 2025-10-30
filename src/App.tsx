@@ -60,8 +60,16 @@ function App() {
       <AnimatePresence mode="wait">
         {currentSection !== 'landing' && (
           <div className="page-container">
-            <button className="back-button" onClick={handleBackToLanding}>
-              ← Back
+            <button
+              className="back-button"
+              onClick={handleBackToLanding}
+              aria-label="Back to landing"
+            >
+              <img
+                src="/icons/back_arrow.png"
+                alt="Back"
+                className="back-icon"
+              />
             </button>
             {renderPage()}
           </div>

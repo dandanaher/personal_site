@@ -71,7 +71,7 @@ public/
 
 #### Light Mode (Default)
 ```css
---bg-primary: #f8fafc        /* Very light blue-gray */
+--bg-primary: #FAF8F4        /* Warm off-white */
 --bg-surface: #ffffff        /* Pure white */
 --text-primary: #0f172a      /* Very dark blue */
 --text-secondary: #475569    /* Medium gray-blue */

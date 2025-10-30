@@ -1,10 +1,13 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { LondonWidget } from '../components/LondonWidget';
 import './Me.css';
 
 export const Me = () => {
   const [showCopied, setShowCopied] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [fadeInOriginal, setFadeInOriginal] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const handleCopyEmail = async () => {
     try {
@@ -16,15 +19,84 @@ export const Me = () => {
     }
   };
 
+  const playBubblePopSound = () => {
+    try {
+      // Try to play the audio file first
+      if (audioRef.current) {
+        audioRef.current.currentTime = 0;
+        audioRef.current.play().catch(() => {
+          // If file doesn't exist, generate procedural sound
+          generateBubblePop();
+        });
+      } else {
+        generateBubblePop();
+      }
+    } catch (err) {
+      generateBubblePop();
+    }
+  };
+
+  const generateBubblePop = () => {
+    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+
+    // Create oscillator for the "pop"
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+
+    // Start with a low frequency and quickly rise
+    oscillator.frequency.setValueAtTime(200, audioContext.currentTime);
+    oscillator.frequency.exponentialRampToValueAtTime(1200, audioContext.currentTime + 0.05);
+
+    // Quick fade out
+    gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.05);
+
+    oscillator.type = 'sine';
+    oscillator.start(audioContext.currentTime);
+    oscillator.stop(audioContext.currentTime + 0.05);
+  };
+
+  const handleProfileClick = () => {
+    if (isAnimating) return;
+
+    setIsAnimating(true);
+    setFadeInOriginal(false);
+
+    // Play bubble pop sound
+    playBubblePopSound();
+
+    // Restore original after 10 seconds
+    setTimeout(() => {
+      setFadeInOriginal(true);
+      setTimeout(() => {
+        setIsAnimating(false);
+        setFadeInOriginal(false);
+      }, 1000);
+    }, 10000);
+  };
+
   return (
     <div className="me-page">
       <LondonWidget />
+      <audio ref={audioRef} src="/sounds/bubble-pop.mp3" preload="auto" />
       <div className="profile-section">
-        <img
-          src="/images/favicon.png"
-          alt="Dan Danaher profile"
-          className="profile-picture"
-        />
+        <div className="profile-picture-container">
+          <img
+            src="/images/face.jpg"
+            alt="Face"
+            className="profile-face"
+          />
+          <img
+            src="/images/favicon.png"
+            alt="Dan Danaher profile"
+            className={`profile-picture ${isAnimating ? 'profile-picture-pop' : ''} ${fadeInOriginal ? 'profile-picture-fadein' : ''}`}
+            onClick={handleProfileClick}
+            style={{ cursor: 'pointer' }}
+          />
+        </div>
         <div className="profile-info">
           <h1 className="profile-name">dan danaher</h1>
           <p className="profile-subtitle">

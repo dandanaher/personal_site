@@ -10,7 +10,7 @@ Modern, minimal, unique. The site should feel sophisticated and technical withou
 ### Light Mode (Default)
 - **Background**: `#FAF8F4` - Warm off-white
 - **Surface**: `#ffffff` - Pure white
-- **Text Primary**: `#0f172a` - Very dark blue
+- **Text Primary**: `#3c3d3b` - Dark charcoal gray
 - **Text Secondary**: `#475569` - Medium gray-blue
 - **Accent**: `#9dcdb4` - Soft mint/seafoam (for UI elements like buttons)
 - **Glass Tint**: `#f5fdf9` - Nearly transparent with hint of mint (orb color)

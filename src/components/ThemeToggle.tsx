@@ -11,9 +11,14 @@ export const ThemeToggle = () => {
       aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
     >
       <img
-        src={theme === 'dark' ? '/icons/lightmode_icon.png' : '/icons/darkmode_icon.png'}
-        alt={theme === 'dark' ? 'Light mode' : 'Dark mode'}
-        className="theme-icon"
+        src="/icons/lightmode_icon.png"
+        alt="Light mode"
+        className={`theme-icon ${theme === 'dark' ? 'theme-icon-active' : 'theme-icon-inactive'}`}
+      />
+      <img
+        src="/icons/darkmode_icon.png"
+        alt="Dark mode"
+        className={`theme-icon ${theme === 'light' ? 'theme-icon-active' : 'theme-icon-inactive'}`}
       />
     </button>
   );

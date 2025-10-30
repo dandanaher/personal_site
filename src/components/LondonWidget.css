@@ -1,0 +1,38 @@
+.london-widget {
+  position: fixed;
+  top: 4rem;
+  right: 8rem;
+  text-align: right;
+  z-index: 500;
+}
+
+.widget-location {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.widget-time {
+  font-size: 2rem;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+}
+
+.widget-weather {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .london-widget {
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .widget-time {
+    font-size: 1.5rem;
+  }
+}

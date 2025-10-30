@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Environment, OrbitControls } from '@react-three/drei';
+import { Environment } from '@react-three/drei';
 import { GlassOrb } from './GlassOrb';
 import * as THREE from 'three';
 
@@ -17,11 +17,20 @@ const ORBS = [
 
 export const LandingScene = ({ onNavigate }: LandingSceneProps) => {
   const groupRef = useRef<THREE.Group>(null);
+  const tiltGroupRef = useRef<THREE.Group>(null);
 
-  // Rotate the entire group of orbs slowly
+  // Rotate the orbs automatically and add wobble to tilt
   useFrame((state) => {
     if (groupRef.current) {
-      groupRef.current.rotation.y = state.clock.elapsedTime * 0.1; // Slow rotation
+      // Simple automatic rotation
+      groupRef.current.rotation.y = state.clock.elapsedTime * 0.1;
+    }
+
+    // Add wobble to the tilt (±5 degrees over the rotation)
+    if (tiltGroupRef.current) {
+      const baseTilt = Math.PI / 12; // 15 degrees
+      const wobble = Math.sin(state.clock.elapsedTime * 0.1) * (Math.PI / 36); // ±5 degrees
+      tiltGroupRef.current.rotation.z = baseTilt + wobble;
     }
   });
 
@@ -49,29 +58,23 @@ export const LandingScene = ({ onNavigate }: LandingSceneProps) => {
       {/* Uniform environment for consistent reflections across all orbs */}
       <Environment preset="studio" background={false} blur={0.8} />
 
-      {/* Orbiting orbs group */}
-      <group ref={groupRef}>
-        {ORBS.map((orb, index) => (
-          <GlassOrb
-            key={orb.id}
-            id={orb.id}
-            position={orbPositions[index].position}
-            label={orb.label}
-            iconPath={orb.iconPath as string | undefined}
-            angle={orbPositions[index].angle}
-            onClick={() => onNavigate(orb.id)}
-          />
-        ))}
+      {/* Tilted orbital plane - 15 degrees with ±5 degree wobble (right side higher, left side lower) */}
+      <group ref={tiltGroupRef}>
+        {/* Rotating orbs group - rotates within the tilted plane, controlled by drag */}
+        <group ref={groupRef}>
+          {ORBS.map((orb, index) => (
+            <GlassOrb
+              key={orb.id}
+              id={orb.id}
+              position={orbPositions[index].position}
+              label={orb.label}
+              iconPath={orb.iconPath as string | undefined}
+              angle={orbPositions[index].angle}
+              onClick={() => onNavigate(orb.id)}
+            />
+          ))}
+        </group>
       </group>
-
-      {/* Camera controls - allow user to orbit around */}
-      <OrbitControls
-        enableZoom={false}
-        enablePan={false}
-        maxPolarAngle={Math.PI / 2}
-        minPolarAngle={Math.PI / 3}
-        autoRotate={false}
-      />
     </>
   );
 };

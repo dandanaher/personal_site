@@ -1,12 +1,6 @@
-import { motion } from 'framer-motion';
-
 export const Projects = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.5 }}
+    <div
       style={{
         padding: '4rem',
         color: 'var(--color-text-primary)',
@@ -20,6 +14,6 @@ export const Projects = () => {
         {/* Placeholder - projects will be added later */}
         <p>Project portfolio coming soon...</p>
       </div>
-    </motion.div>
+    </div>
   );
 };

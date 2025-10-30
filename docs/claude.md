@@ -73,7 +73,7 @@ public/
 ```css
 --bg-primary: #FAF8F4        /* Warm off-white */
 --bg-surface: #ffffff        /* Pure white */
---text-primary: #0f172a      /* Very dark blue */
+--text-primary: #3c3d3b      /* Dark charcoal gray */
 --text-secondary: #475569    /* Medium gray-blue */
 --accent: #9dcdb4            /* Soft mint/seafoam - buttons/UI */
 --glass-tint: #f5fdf9        /* Nearly transparent mint - orb base */

@@ -49,13 +49,13 @@ export const GlassOrb = ({ position, iconPath, angle, onClick, id }: GlassOrbPro
           ior={1.5}
           chromaticAberration={0.025}
           // Subtle mint/seafoam green tint
-          color={hovered ? '#b8e6cf' : '#cceedd'}
+          color={hovered ? '#87A795' : '#a8c5b3'}
           // Subtle glow on hover
-          emissive={hovered ? '#a8d4bd' : '#000000'}
-          emissiveIntensity={hovered ? 0.3 : 0}
+          emissive={'#87A795'}
+          emissiveIntensity={hovered ? 0.7 : 0.25}
           // High quality rendering - increased samples and resolution for crisp glass
-          samples={32}
-          resolution={1024}
+          samples={64}
+          resolution={2048}
           // Enable transparency for proper rendering
           transparent={true}
           toneMapped={false}

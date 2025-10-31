@@ -43,6 +43,7 @@ const BillboardContent = ({ iconPath, scale = 1.3 }: IconBillboardProps) => {
         map={texture}
         transparent={true}
         opacity={1.0}
+        color={new THREE.Color(2.5, 2.5, 2.5)}
         side={THREE.DoubleSide}
         depthWrite={true}
         depthTest={true}

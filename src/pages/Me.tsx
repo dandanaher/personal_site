@@ -765,16 +765,13 @@ export const Me = () => {
         </div>
         <div className="flex flex-col gap-3 items-center md:items-start">
           <h1 className="font-serif text-4xl md:text-5xl font-normal leading-tight text-primary">dan danaher</h1>
-          <p className="text-base md:text-lg text-secondary">
-            aerospace engineering student. 21, based in London.
-          </p>
-          <div className="mt-2 flex gap-3 justify-center md:justify-start">
+          <div className="flex gap-3 justify-center md:justify-start">
             <a
               href="https://github.com/dandanaher"
               target="_blank"
               rel="noopener noreferrer"
               className="flex h-10 w-10 items-center justify-center rounded-full border border-secondary bg-transparent text-primary hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-background"
-              style={{ transition: 'color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, transform 0.2s ease' }}
+              style={{ transition: 'transform 0.2s ease' }}
               aria-label="GitHub"
             >
               <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
@@ -786,7 +783,7 @@ export const Me = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="flex h-10 w-10 items-center justify-center rounded-full border border-secondary bg-transparent text-primary hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-background"
-              style={{ transition: 'color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, transform 0.2s ease' }}
+              style={{ transition: 'transform 0.2s ease' }}
               aria-label="X/Twitter"
             >
               <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
@@ -797,7 +794,7 @@ export const Me = () => {
               <button
                 onClick={handleCopyEmail}
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-secondary bg-transparent text-primary hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-background"
-                style={{ transition: 'color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, transform 0.2s ease' }}
+                style={{ transition: 'transform 0.2s ease' }}
                 aria-label="Copy email address"
               >
                 <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
@@ -821,6 +818,21 @@ export const Me = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Bio Content */}
+      <div className="mb-6 max-w-2xl md:ml-[162px]">
+        <h2 className="mb-2 text-xl md:text-2xl font-serif text-primary">who am i?</h2>
+        <p className="text-sm md:text-base text-secondary leading-relaxed">
+          my name is dan danaher, i'm a 21 year old aerospace engineering student studying at a russel group university in London. i love experimenting with web dev, reading and drawing in my spare time, but my real passion lies with spaceflight. i've been passively interested in spaceflight for my entire life, but my enthrallment started in 2018 with the first falcon heavy flight test. my mission, since then, has been to expand the scope of my knowledge and expertise in spaceflight without limit. i've been an active contributor to multiple online spaceflight-centric projects, including social media for <a href="https://www.youtube.com/@LabPadre" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }} onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--color-accent)'; e.currentTarget.style.textDecoration = 'underline'; }} onMouseLeave={(e) => { e.currentTarget.style.color = 'inherit'; e.currentTarget.style.textDecoration = 'none'; }}>LabPadre</a>, graphics for <a href="https://www.youtube.com/@RGVAerialPhotography" target="_blank" rel="noopener noreferrer" style={{ color: 'inherit', textDecoration: 'none' }} onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--color-accent)'; e.currentTarget.style.textDecoration = 'underline'; }} onMouseLeave={(e) => { e.currentTarget.style.color = 'inherit'; e.currentTarget.style.textDecoration = 'none'; }}>RGV aerial photography</a>, and more.
+        </p>
+      </div>
+
+      <div className="mb-6 max-w-2xl md:ml-[162px]">
+        <h2 className="mb-2 text-xl md:text-2xl font-serif text-primary">my experience</h2>
+        <p className="text-sm md:text-base text-secondary leading-relaxed">
+          beyond official studies, i'm continuously learning and adding to my skillset with online resources and personal projects. web development is one of those, and i thought this site would be a good place to consolidate my output and share some of what i do.
+        </p>
       </div>
 
       {/* Physics Icon */}

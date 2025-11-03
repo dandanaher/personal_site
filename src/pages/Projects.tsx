@@ -1,17 +1,11 @@
 export const Projects = () => {
   return (
-    <div
-      style={{
-        padding: '4rem',
-        color: 'var(--color-text-primary)',
-      }}
-    >
-      <h1>Projects</h1>
-      <p style={{ marginTop: '1rem', color: 'var(--color-text-secondary)' }}>
+    <div className="p-16 text-primary">
+      <h1 className="text-4xl">Projects</h1>
+      <p className="mt-4 text-secondary">
         Things I've built
       </p>
-      <div style={{ marginTop: '2rem' }}>
-        {/* Placeholder - projects will be added later */}
+      <div className="mt-8">
         <p>Project portfolio coming soon...</p>
       </div>
     </div>

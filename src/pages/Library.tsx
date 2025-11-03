@@ -1,17 +1,11 @@
 export const Library = () => {
   return (
-    <div
-      style={{
-        padding: '4rem',
-        color: 'var(--color-text-primary)',
-      }}
-    >
-      <h1>Library</h1>
-      <p style={{ marginTop: '1rem', color: 'var(--color-text-secondary)' }}>
+    <div className="p-16 text-primary">
+      <h1 className="text-4xl">Library</h1>
+      <p className="mt-4 text-secondary">
         Books I've read and recommend
       </p>
-      <div style={{ marginTop: '2rem' }}>
-        {/* Placeholder - book collection will be added later */}
+      <div className="mt-8">
         <p>Book collection coming soon...</p>
       </div>
     </div>

@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect, useLayoutEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { LondonWidget } from '../components/LondonWidget';
-import './Me.css';
 
 // --- Physics Types ---
 interface PhysicsState {
@@ -32,7 +31,6 @@ export const Me = () => {
   const [isPhysicsMode, setIsPhysicsMode] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [isNearSnapZone, setIsNearSnapZone] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const [usesAccelerometer, setUsesAccelerometer] = useState(false);
   const [physics, setPhysics] = useState<PhysicsState>({
     x: 0,
@@ -231,7 +229,7 @@ export const Me = () => {
 
     // --- UPDATED QUERY SELECTOR ---
     const targets = document.querySelectorAll(
-      "h1.profile-name, p.profile-subtitle, a.social-icon, .social-icon svg, .london-widget, .london-widget > *"
+      "h1, p, a[href], button[aria-label], svg"
     );
 
     targets.forEach((element) => {
@@ -260,9 +258,7 @@ export const Me = () => {
         htmlElement.tagName === "H1" ||
         htmlElement.tagName === "P" ||
         htmlElement.tagName === "A" ||
-        htmlElement.classList.contains("widget-location") ||
-        htmlElement.classList.contains("widget-time") ||
-        htmlElement.classList.contains("widget-weather")
+        htmlElement.tagName === "BUTTON"
       ) {
         const range = document.createRange();
         const textNode = htmlElement.childNodes[0];
@@ -346,7 +342,7 @@ export const Me = () => {
           setFadeInOriginal(false);
           setNextEffect('physics');
         }, 1000);
-      }, 10000);
+      }, 5000);
     } else {
       // --- ADDED: Accelerometer permission logic from original ---
       if (usesAccelerometer && typeof (DeviceOrientationEvent as any).requestPermission === 'function') {
@@ -406,12 +402,12 @@ export const Me = () => {
   // --- Physics Effects ---
 
   // --- ADDED: All missing useEffects from original ---
-  
+
+
   // Detect mobile and accelerometer
   useEffect(() => {
     const checkMobile = () => {
       const isMobileDevice = window.innerWidth < 768;
-      setIsMobile(isMobileDevice);
       if (isMobileDevice && typeof DeviceOrientationEvent !== 'undefined') {
         setUsesAccelerometer(true);
       }
@@ -709,42 +705,76 @@ export const Me = () => {
   }, [isPhysicsMode, isDragging, usesAccelerometer]); // Restored original dependencies
 
   return (
-    <div className="me-page">
+    <div className="m-0 max-w-[1280px] w-full py-8 px-6 md:p-16 md:pl-20 text-primary">
       <LondonWidget />
       <audio ref={audioRef} src="/sounds/bubble-pop.mp3" preload="auto" />
-      <div className="profile-section">
-        <div className="profile-picture-container">
+      <div className="mb-12 flex flex-col items-center text-center gap-6 md:flex-row md:items-start md:text-left md:gap-8">
+        <div className="relative flex-shrink-0" style={{ width: '130px', height: '130px', marginLeft: '-5px', marginTop: '-5px' }}>
           <img
             ref={placeholderRef}
             src="/images/face.jpg"
             alt="Face"
-            className="profile-face"
+            style={{
+              position: 'absolute',
+              top: '5px',
+              left: '5px',
+              width: '120px',
+              height: '120px',
+              borderRadius: '50%',
+              objectFit: 'cover',
+              boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+              zIndex: 0
+            }}
           />
           {isPhysicsMode && isNearSnapZone && (
-            <div className="snap-zone-glow" />
+            <div style={{
+              position: 'absolute',
+              top: '5px',
+              left: '5px',
+              width: '120px',
+              height: '120px',
+              borderRadius: '50%',
+              border: '2px solid rgb(59, 130, 246)',
+              backgroundColor: 'rgba(59, 130, 246, 0.2)',
+              zIndex: 1,
+              animation: 'pulse 1s ease-in-out infinite'
+            }} />
           )}
           {!isPhysicsMode && (
             <img
               ref={clickableIconRef}
               src="/images/favicon.png"
               alt="Dan Danaher profile"
-              className={`profile-picture ${isAnimating ? 'profile-picture-pop' : ''} ${fadeInOriginal ? 'profile-picture-fadein' : ''}`}
+              className={`${isAnimating ? 'animate-bubble-pop' : ''} ${fadeInOriginal ? 'animate-profile-fade-in' : ''}`}
               onClick={handleProfileClick}
-              style={{ cursor: 'pointer' }}
+              style={{
+                position: 'absolute',
+                cursor: 'pointer',
+                top: '0',
+                left: '0',
+                width: '130px',
+                height: '130px',
+                borderRadius: '50%',
+                objectFit: 'cover',
+                boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+                transition: 'opacity 1s ease-in-out',
+                zIndex: 2
+              }}
             />
           )}
         </div>
-        <div className="profile-info">
-          <h1 className="profile-name">dan danaher</h1>
-          <p className="profile-subtitle">
+        <div className="flex flex-col gap-3 items-center md:items-start">
+          <h1 className="font-serif text-4xl md:text-5xl font-normal leading-tight text-primary">dan danaher</h1>
+          <p className="text-base md:text-lg text-secondary">
             aerospace engineering student. 21, based in London.
           </p>
-          <div className="social-links">
+          <div className="mt-2 flex gap-3 justify-center md:justify-start">
             <a
-              href="[https://github.com/dandanaher](https://github.com/dandanaher)"
+              href="https://github.com/dandanaher"
               target="_blank"
               rel="noopener noreferrer"
-              className="social-icon"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-secondary bg-transparent text-primary hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-background"
+              style={{ transition: 'color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, transform 0.2s ease' }}
               aria-label="GitHub"
             >
               <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
@@ -752,20 +782,22 @@ export const Me = () => {
               </svg>
             </a>
             <a
-              href="[https://x.com/devDanaher](https://x.com/devDanaher)"
+              href="https://x.com/devDanaher"
               target="_blank"
               rel="noopener noreferrer"
-              className="social-icon"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-secondary bg-transparent text-primary hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-background"
+              style={{ transition: 'color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, transform 0.2s ease' }}
               aria-label="X/Twitter"
             >
               <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
               </svg>
             </a>
-            <div className="email-icon-container">
+            <div className="relative">
               <button
                 onClick={handleCopyEmail}
-                className="social-icon"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-secondary bg-transparent text-primary hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-background"
+                style={{ transition: 'color 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, transform 0.2s ease' }}
                 aria-label="Copy email address"
               >
                 <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
@@ -779,7 +811,8 @@ export const Me = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -5 }}
                     transition={{ duration: 0.2 }}
-                    className="copied-popup"
+                    className="absolute top-0 left-[calc(100%+0.5rem)] z-[1000] whitespace-nowrap rounded-md bg-primary px-4 py-2 text-sm text-background shadow-lg
+                               before:absolute before:top-1/2 before:right-full before:-translate-y-1/2 before:border-4 before:border-transparent before:border-r-primary"
                   >
                     Email copied!
                   </motion.div>
@@ -794,7 +827,6 @@ export const Me = () => {
       {isPhysicsMode && (
         <div
           ref={physicsIconRef}
-          className="physics-icon"
           style={{
             position: 'fixed',
             zIndex: 101,

@@ -7,7 +7,6 @@ import { Me } from './pages/Me';
 import { Library } from './pages/Library';
 import { Projects } from './pages/Projects';
 import { Thoughts } from './pages/Thoughts';
-import './App.css';
 
 type Section = 'landing' | 'me' | 'library' | 'projects' | 'thoughts';
 
@@ -38,11 +37,11 @@ function App() {
   };
 
   return (
-    <div className="app">
+    <div className="relative w-screen h-screen overflow-hidden">
       <ThemeToggle />
 
       {/* 3D Canvas - always rendered, hidden when viewing pages */}
-      <div className={`canvas-container ${currentSection !== 'landing' ? 'hidden' : ''}`}>
+      <div className={`relative w-full h-full transition-opacity duration-500 ease-in-out ${currentSection !== 'landing' ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
         <Canvas
           camera={{ position: [0, 2, 10], fov: 50 }}
           gl={{
@@ -59,16 +58,16 @@ function App() {
       {/* Page content */}
       <AnimatePresence mode="wait">
         {currentSection !== 'landing' && (
-          <div className="page-container">
+          <div key={currentSection} className="absolute inset-0 z-[100] overflow-y-auto bg-background">
             <button
-              className="back-button"
+              className="fixed top-4 left-4 z-[1000] flex h-10 w-10 md:top-8 md:left-8 md:h-12 md:w-12 items-center justify-center rounded-full border border-[rgba(157,205,180,0.3)] bg-[rgba(157,205,180,0.15)] shadow-[0_4px_12px_rgba(157,205,180,0.2),inset_0_1px_1px_rgba(255,255,255,0.3)] backdrop-blur-lg transition-all duration-300 hover:scale-110 hover:border-[rgba(157,205,180,0.5)] hover:bg-[rgba(157,205,180,0.25)] hover:shadow-[0_6px_20px_rgba(157,205,180,0.3),inset_0_1px_1px_rgba(255,255,255,0.4)] active:scale-95"
               onClick={handleBackToLanding}
               aria-label="Back to landing"
             >
               <img
                 src="/icons/back_arrow.png"
                 alt="Back"
-                className="back-icon"
+                className="h-3/5 w-3/5 object-contain [filter:drop-shadow(0_1px_2px_rgba(0,0,0,0.2))]"
               />
             </button>
             {renderPage()}

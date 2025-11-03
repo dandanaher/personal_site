@@ -1,15 +1,13 @@
-import { useState, useEffect } from 'react';
-import './LondonWidget.css';
+import { useState, useEffect, memo } from 'react';
 
 interface WeatherData {
   temp: string;
   condition: string;
 }
 
-export const LondonWidget = () => {
+const LondonWidgetComponent = () => {
   const [time, setTime] = useState('');
   const [weather, setWeather] = useState<WeatherData | null>(null);
-  const [loading, setLoading] = useState(true);
 
   // Update time every second
   useEffect(() => {
@@ -32,40 +30,77 @@ export const LondonWidget = () => {
   // Fetch weather data
   useEffect(() => {
     const fetchWeather = async () => {
+      console.log('[LondonWidget] Starting weather fetch...');
       try {
-        const response = await fetch('https://wttr.in/London?format=j1');
-        const data = await response.json();
+        // Use plain format endpoint with mode: 'cors' to avoid HTTP/2 issues
+        // Add ?m to force metric (Celsius) units
+        const url = 'https://wttr.in/London?format=%t+%C&m';
+        console.log('[LondonWidget] Fetching from:', url);
 
-        const currentCondition = data.current_condition[0];
-        setWeather({
-          temp: currentCondition.temp_C,
-          condition: currentCondition.weatherDesc[0].value,
+        const response = await fetch(url, {
+          mode: 'cors',
+          cache: 'no-cache',
         });
-        setLoading(false);
+
+        console.log('[LondonWidget] Response status:', response.status);
+        console.log('[LondonWidget] Response ok:', response.ok);
+
+        if (!response.ok) {
+          throw new Error(`Weather API returned status ${response.status}`);
+        }
+
+        const text = await response.text();
+        console.log('[LondonWidget] Raw response text:', text);
+
+        // Parse the format: "+8°C Partly cloudy" or handle both C and F
+        const match = text.trim().match(/([+-]?\d+)°[CF]\s+(.+)/);
+        console.log('[LondonWidget] Regex match:', match);
+
+        if (match) {
+          const weatherData = {
+            temp: match[1].replace(/^\+/, ''), // Remove leading + sign for positive temps
+            condition: match[2],
+          };
+          console.log('[LondonWidget] Setting weather data:', weatherData);
+          setWeather(weatherData);
+        } else {
+          console.error('[LondonWidget] Failed to parse weather text:', text);
+          setWeather(null);
+        }
       } catch (error) {
-        console.error('Failed to fetch weather:', error);
-        setLoading(false);
+        console.error('[LondonWidget] Weather fetch error:', error);
+        console.error('[LondonWidget] Error details:', {
+          name: error instanceof Error ? error.name : 'Unknown',
+          message: error instanceof Error ? error.message : String(error),
+        });
+        setWeather(null);
       }
     };
 
+    console.log('[LondonWidget] Weather effect initializing...');
     fetchWeather();
     // Refresh weather every 30 minutes
     const interval = setInterval(fetchWeather, 30 * 60 * 1000);
 
-    return () => clearInterval(interval);
+    return () => {
+      console.log('[LondonWidget] Weather effect cleanup');
+      clearInterval(interval);
+    };
   }, []);
 
+  console.log('[LondonWidget] Rendering with weather:', weather);
+
   return (
-    <div className="london-widget">
-      <div className="widget-location">London</div>
-      <div className="widget-time">{time}</div>
-      {loading ? (
-        <div className="widget-weather">Loading...</div>
-      ) : weather ? (
-        <div className="widget-weather">
+    <div className="fixed top-4 right-4 z-[500] text-right md:top-16 md:right-32">
+      <div className="mb-1 text-sm text-secondary">London</div>
+      <div className="mb-1 text-2xl md:text-[2rem] font-normal leading-tight text-primary">{time}</div>
+      {weather && (
+        <div className="text-sm text-secondary">
           {weather.temp}°C · {weather.condition}
         </div>
-      ) : null}
+      )}
     </div>
   );
 };
+
+export const LondonWidget = memo(LondonWidgetComponent);

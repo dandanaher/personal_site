@@ -12,12 +12,12 @@ export const ThemeToggle = () => {
       <img
         src="/icons/lightmode_icon.png"
         alt="Light mode"
-        className={`absolute h-3/5 w-3/5 object-contain [filter:drop-shadow(0_1px_2px_rgba(0,0,0,0.2))] transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] ${theme === 'dark' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
+        className={`absolute h-3/5 w-3/5 object-contain [filter:drop-shadow(0_1px_2px_rgba(0,0,0,0.2))] transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] ${theme === 'light' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
       />
       <img
         src="/icons/darkmode_icon.png"
         alt="Dark mode"
-        className={`absolute h-3/5 w-3/5 object-contain [filter:drop-shadow(0_1px_2px_rgba(0,0,0,0.2))] transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] ${theme === 'light' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
+        className={`absolute h-3/5 w-3/5 object-contain [filter:drop-shadow(0_1px_2px_rgba(0,0,0,0.2))] transition-all duration-400 ease-[cubic-bezier(0.4,0,0.2,1)] ${theme === 'dark' ? 'scale-100 opacity-100' : 'scale-0 opacity-0'}`}
       />
     </button>
   );

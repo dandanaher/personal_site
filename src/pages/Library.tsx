@@ -228,7 +228,7 @@ export const Library = () => {
                 Previously Read
               </span>
               <div className="relative -mx-6 px-6">
-                <div className="custom-scrollbar overflow-x-auto pb-4">
+                <div className="overflow-x-auto pb-4 scrollbar-hide">
                   {completedBooks.length > 0 ? (
                     <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
                       {completedBooks.map((book) => {
@@ -305,15 +305,15 @@ export const Library = () => {
                 </span>
               </div>
               <div className="relative">
-                <div className="custom-scrollbar max-h-[52vh] overflow-y-auto pr-2 pb-12">
+                <div className="max-h-[52vh] overflow-y-auto pb-12 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                   {completedBooks.length > 0 ? (
-                    // V2: using auto-fill for responsiveness
-                    <div className="grid grid-cols-[repeat(auto-fill,minmax(8rem,1fr))] gap-4">
+                    // Fixed 5 columns, right-aligned, wider books
+                    <div className="grid grid-cols-5 gap-5 ml-auto max-w-fit">
                       {completedBooks.map((book) => {
                         const isSelected = selectedBook?.id === book.id;
 
                         return (
-                          <div key={book.id} className="flex justify-start">
+                          <div key={book.id} className="flex justify-start w-[140px]">
                             <button
                               type="button"
                               onClick={() => handleBookSelect(book.id)}

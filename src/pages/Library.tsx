@@ -40,7 +40,7 @@ export const Library = () => {
   return (
     // Replaced V1 layout wrapper with V2's page padding and text colors
     <div
-      className="flex flex-1 flex-col overflow-y-auto p-6 md:p-16 text-primary"
+      className="flex h-screen flex-col overflow-hidden p-6 md:p-16 text-primary"
     >
       {/* Removed V1 <MobileNav /> and <header /> */}
       <section className="flex flex-col gap-4 md:gap-7 pt-16 md:pt-8 lg:pt-10">

@@ -47,8 +47,18 @@ export const Library = () => {
     <div
       className="flex h-screen flex-col overflow-hidden p-6 md:p-16 text-primary"
     >
+      {/* Page Title */}
+      <div className="pt-16 md:-mt-8 md:pt-0 pb-6 md:pb-8 md:pl-8">
+        <h1 className="mb-1 font-serif text-5xl tracking-tight text-primary">
+          Library
+        </h1>
+        <p className="font-serif text-sm text-secondary">
+          a collection of books i've read, am reading, and am yet to read
+        </p>
+      </div>
+
       {/* Removed V1 <MobileNav /> and <header /> */}
-      <section className="flex flex-col gap-4 md:gap-7 pt-16 md:pt-8 lg:pt-10">
+      <section className="flex flex-col gap-4 md:gap-7">
         {selectedBook ? (
           <div className="flex flex-col gap-6">
             {/* Mobile Layout: Book on left, title and description on right */}
@@ -118,7 +128,7 @@ export const Library = () => {
 
               {/* Review box */}
               {/* Glass material styling matching theme toggle and back button */}
-              <div className="flex flex-col gap-4 rounded-xl border border-[rgba(157,205,180,0.3)] bg-[rgba(157,205,180,0.15)] shadow-[0_4px_12px_rgba(157,205,180,0.2),inset_0_1px_1px_rgba(255,255,255,0.3)] backdrop-blur-lg p-6 transition-all duration-300 hover:border-[rgba(157,205,180,0.5)] hover:bg-[rgba(157,205,180,0.25)] hover:shadow-[0_6px_20px_rgba(157,205,180,0.3),inset_0_1px_1px_rgba(255,255,255,0.4)]">
+              <div className="flex flex-col gap-4 rounded-xl border border-[rgba(157,205,180,0.3)] bg-[rgba(157,205,180,0.15)] shadow-[0_2px_6px_rgba(157,205,180,0.2),inset_0_1px_1px_rgba(255,255,255,0.3)] backdrop-blur-lg p-6 transition-all duration-300 hover:border-[rgba(157,205,180,0.5)] hover:bg-[rgba(157,205,180,0.25)] hover:shadow-[0_3px_10px_rgba(157,205,180,0.3),inset_0_1px_1px_rgba(255,255,255,0.4)]">
                 {/* V2 'text-secondary' */}
                 <p className="text-sm italic text-secondary">
                   {selectedBook.review ?? "thoughts coming soon"}
@@ -146,7 +156,7 @@ export const Library = () => {
                 </p>
               </div>
               {/* Glass material styling matching theme toggle and back button */}
-              <div className="flex h-72 flex-1 flex-col gap-6 rounded-xl border border-[rgba(157,205,180,0.3)] bg-[rgba(157,205,180,0.15)] shadow-[0_4px_12px_rgba(157,205,180,0.2),inset_0_1px_1px_rgba(255,255,255,0.3)] backdrop-blur-lg p-8 transition-all duration-300 hover:border-[rgba(157,205,180,0.5)] hover:bg-[rgba(157,205,180,0.25)] hover:shadow-[0_6px_20px_rgba(157,205,180,0.3),inset_0_1px_1px_rgba(255,255,255,0.4)]">
+              <div className="flex h-72 flex-1 flex-col gap-6 rounded-xl border border-[rgba(157,205,180,0.3)] bg-[rgba(157,205,180,0.15)] shadow-[0_2px_6px_rgba(157,205,180,0.2),inset_0_1px_1px_rgba(255,255,255,0.3)] backdrop-blur-lg p-8 transition-all duration-300 hover:border-[rgba(157,205,180,0.5)] hover:bg-[rgba(157,205,180,0.25)] hover:shadow-[0_3px_10px_rgba(157,205,180,0.3),inset_0_1px_1px_rgba(255,255,255,0.4)]">
                 {selectedBook.rating !== undefined && (
                   <div className="flex gap-1.5">
                     {[1, 2, 3, 4, 5].map((star) => {

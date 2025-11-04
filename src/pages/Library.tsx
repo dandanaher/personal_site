@@ -423,7 +423,7 @@ const HeroBook = ({ book, isMobile = false }: HeroBookProps) => {
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const maxTilt = 20;
+    const maxTilt = 40;
     const nextY = ((x - centerX) / centerX) * maxTilt;
     const nextX = -((y - centerY) / centerY) * maxTilt;
 
@@ -464,17 +464,27 @@ const HeroBook = ({ book, isMobile = false }: HeroBookProps) => {
   return (
     <div
       className={isMobile ? "relative h-48 w-32" : "relative h-72 w-48"}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
     >
+      {/* Expanded hover detection area - doesn't affect layout */}
       <div
-        className="absolute inset-0 opacity-25 blur-3xl"
+        className="absolute z-10"
+        style={{
+          top: isMobile ? '-48px' : '-64px',
+          left: isMobile ? '-48px' : '-64px',
+          right: isMobile ? '-48px' : '-64px',
+          bottom: isMobile ? '-48px' : '-64px'
+        }}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+      />
+      <div
+        className="absolute inset-0 opacity-25 blur-3xl pointer-events-none"
           style={{
             background: `radial-gradient(circle at 50% 65%, ${book.accentColor}45, transparent 70%)`,
           }}
         />
       <div
-        className="relative h-full w-full"
+        className="relative h-full w-full pointer-events-none"
         style={{ perspective }}
       >
         <div
@@ -483,7 +493,7 @@ const HeroBook = ({ book, isMobile = false }: HeroBookProps) => {
             transformStyle: "preserve-3d",
             transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)` +
               ` translateZ(${spineThickness / 2}px)`,
-            transition: "transform 100ms ease-out",
+            transition: "transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1)",
           }}
         >
           <div

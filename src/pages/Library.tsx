@@ -6,8 +6,13 @@ import type { LibraryBook } from "../data/library";
 import { libraryBooks } from "../data/library";
 
 export const Library = () => {
-  const currentBook = useMemo(
-    () => libraryBooks.find((book) => book.status === "current") ?? null,
+  const currentBooks = useMemo(
+    () => libraryBooks.filter((book) => book.status === "current"),
+    []
+  );
+
+  const nextBooks = useMemo(
+    () => libraryBooks.filter((book) => book.status === "next"),
     []
   );
 
@@ -17,21 +22,21 @@ export const Library = () => {
   );
 
   const [selectedBookId, setSelectedBookId] = useState<string | null>(
-    currentBook?.id ?? completedBooks[0]?.id ?? null
+    currentBooks[0]?.id ?? completedBooks[0]?.id ?? null
   );
 
   const selectedBook = useMemo(() => {
     if (!selectedBookId) {
-      return currentBook ?? completedBooks[0] ?? null;
+      return currentBooks[0] ?? completedBooks[0] ?? null;
     }
 
     return (
       libraryBooks.find((book) => book.id === selectedBookId) ??
-      currentBook ??
+      currentBooks[0] ??
       completedBooks[0] ??
       null
     );
-  }, [selectedBookId, currentBook, completedBooks]);
+  }, [selectedBookId, currentBooks, completedBooks]);
 
   const handleBookSelect = (bookId: string) => {
     setSelectedBookId(bookId);
@@ -112,8 +117,8 @@ export const Library = () => {
               </div>
 
               {/* Review box */}
-              {/* V2 styles: 'border-secondary/50', 'bg-surface/40' */}
-              <div className="flex flex-col gap-4 rounded-xl border border-secondary/50 bg-surface/40 p-6 backdrop-blur-sm">
+              {/* Glass material styling matching theme toggle and back button */}
+              <div className="flex flex-col gap-4 rounded-xl border border-[rgba(157,205,180,0.3)] bg-[rgba(157,205,180,0.15)] shadow-[0_4px_12px_rgba(157,205,180,0.2),inset_0_1px_1px_rgba(255,255,255,0.3)] backdrop-blur-lg p-6 transition-all duration-300 hover:border-[rgba(157,205,180,0.5)] hover:bg-[rgba(157,205,180,0.25)] hover:shadow-[0_6px_20px_rgba(157,205,180,0.3),inset_0_1px_1px_rgba(255,255,255,0.4)]">
                 {/* V2 'text-secondary' */}
                 <p className="text-sm italic text-secondary">
                   {selectedBook.review ?? "thoughts coming soon"}
@@ -140,8 +145,8 @@ export const Library = () => {
                   {selectedBook.description}
                 </p>
               </div>
-              {/* V2 styles: 'border-secondary/50', 'bg-surface/40' */}
-              <div className="flex h-72 flex-1 flex-col gap-6 rounded-xl border border-secondary/50 bg-surface/40 p-8 backdrop-blur-sm">
+              {/* Glass material styling matching theme toggle and back button */}
+              <div className="flex h-72 flex-1 flex-col gap-6 rounded-xl border border-[rgba(157,205,180,0.3)] bg-[rgba(157,205,180,0.15)] shadow-[0_4px_12px_rgba(157,205,180,0.2),inset_0_1px_1px_rgba(255,255,255,0.3)] backdrop-blur-lg p-8 transition-all duration-300 hover:border-[rgba(157,205,180,0.5)] hover:bg-[rgba(157,205,180,0.25)] hover:shadow-[0_6px_20px_rgba(157,205,180,0.3),inset_0_1px_1px_rgba(255,255,255,0.4)]">
                 {selectedBook.rating !== undefined && (
                   <div className="flex gap-1.5">
                     {[1, 2, 3, 4, 5].map((star) => {
@@ -195,27 +200,71 @@ export const Library = () => {
           {/* Mobile Layout */}
           <div className="flex flex-col gap-6 md:hidden">
             {/* Currently Reading - Mobile */}
-            {currentBook && (
+            {currentBooks.length > 0 && (
               <div className="flex flex-col gap-2">
                 {/* V2 'text-secondary' */}
                 <span className="text-xs uppercase tracking-[0.45em] text-secondary">
-                  Currently Reading
+                  Reading
                 </span>
-                <div className="flex justify-start">
-                  <div className="w-32">
-                    <button
-                      type="button"
-                      onClick={() => handleBookSelect(currentBook.id)}
-                      aria-pressed={selectedBook?.id === currentBook.id}
-                      className={`relative flex w-full overflow-hidden rounded-lg transition-transform aspect-[2/3] ${
-                        selectedBook?.id === currentBook.id
-                          ? "-translate-y-1"
-                          : "hover:-translate-y-1"
-                      }`}
-                    >
-                      <BookArt book={currentBook} />
-                      <span className="sr-only">{currentBook.title} by {currentBook.author}</span>
-                    </button>
+                <div className="relative -mx-6 px-6">
+                  <div className="overflow-x-auto pb-4 scrollbar-hide">
+                    <div className="flex gap-3">
+                      {currentBooks.map((book) => {
+                        const isSelected = selectedBook?.id === book.id;
+                        return (
+                          <div key={book.id} className="w-32 flex-shrink-0">
+                            <button
+                              type="button"
+                              onClick={() => handleBookSelect(book.id)}
+                              aria-pressed={isSelected}
+                              className={`relative flex w-full overflow-hidden rounded-lg transition-transform aspect-[2/3] ${
+                                isSelected
+                                  ? "-translate-y-1"
+                                  : "hover:-translate-y-1"
+                              }`}
+                            >
+                              <BookArt book={book} />
+                              <span className="sr-only">{book.title} by {book.author}</span>
+                            </button>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Reading Soon - Mobile: 4 columns, scrollable */}
+            {nextBooks.length > 0 && (
+              <div className="flex flex-col gap-3">
+                {/* V2 'text-secondary' */}
+                <span className="text-xs uppercase tracking-[0.45em] text-secondary">
+                  Reading Soon
+                </span>
+                <div className="relative -mx-6 px-6">
+                  <div className="overflow-x-auto pb-4 scrollbar-hide">
+                    <div className="grid grid-cols-4 gap-3">
+                      {nextBooks.map((book) => {
+                        const isSelected = selectedBook?.id === book.id;
+                        return (
+                          <button
+                            key={book.id}
+                            type="button"
+                            onClick={() => handleBookSelect(book.id)}
+                            aria-pressed={isSelected}
+                            className={`relative flex w-full overflow-hidden rounded-lg transition-transform aspect-[2/3] ${
+                              isSelected
+                                ? "-translate-y-1"
+                                : "hover:-translate-y-1"
+                            }`}
+                          >
+                            <BookArt book={book} />
+                            <span className="sr-only">{book.title} by {book.author}</span>
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -265,38 +314,81 @@ export const Library = () => {
 
           {/* Desktop Layout - Original */}
           <div className="hidden md:flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-10">
-            {currentBook ? (
-              <div className="flex w-[11rem] shrink-0 flex-col items-start gap-3">
+            {currentBooks.length > 0 && (
+              <div className="flex w-[140px] shrink-0 flex-col items-start gap-3">
                 {/* V2 'text-secondary' */}
                 <span className="whitespace-nowrap text-xs uppercase tracking-[0.45em] text-secondary">
-                  Currently Reading
+                  Reading
                 </span>
-                <div className="group relative w-full">
-                  <div
-                    aria-hidden
-                    className="pointer-events-none absolute inset-[-10%] rounded-xl opacity-20 blur-2xl transition-opacity group-hover:opacity-35"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, rgba(253, 224, 71, 0.55), rgba(250, 204, 21, 0.2))",
-                    }}
-                  />
-                  <button
-                    type="button"
-                    onClick={() => handleBookSelect(currentBook.id)}
-                    aria-pressed={selectedBook?.id === currentBook.id}
-                    // V2 focus styles
-                    className={`relative flex w-full shrink-0 overflow-hidden rounded-lg transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent aspect-[2/3] ${
-                      selectedBook?.id === currentBook.id
-                        ? "-translate-y-1"
-                        : "hover:-translate-y-1"
-                    }`}
-                  >
-                    <BookArt book={currentBook} />
-                    <span className="sr-only">{currentBook.title} by {currentBook.author}</span>
-                  </button>
+                <div className="relative w-full">
+                  <div className="max-h-[52vh] overflow-y-auto pb-4 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                    <div className="flex flex-col gap-5">
+                      {currentBooks.map((book) => {
+                        const isSelected = selectedBook?.id === book.id;
+                        return (
+                          <div key={book.id} className="w-full">
+                            <button
+                              type="button"
+                              onClick={() => handleBookSelect(book.id)}
+                              aria-pressed={isSelected}
+                              // V2 focus styles
+                              className={`relative flex w-full shrink-0 overflow-hidden rounded-lg transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent aspect-[2/3] ${
+                                isSelected
+                                  ? "-translate-y-1"
+                                  : "hover:-translate-y-1"
+                              }`}
+                            >
+                              <BookArt book={book} />
+                              <span className="sr-only">{book.title} by {book.author}</span>
+                            </button>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
               </div>
-            ) : null}
+            )}
+
+            {/* Reading Soon - Desktop: 4 columns, scrollable */}
+            {nextBooks.length > 0 && (
+              <div className="flex flex-col gap-4 w-[600px] shrink-0 ml-[60px]">
+                <div className="flex items-center justify-start gap-3">
+                  {/* V2 'text-secondary' */}
+                  <span className="whitespace-nowrap text-xs uppercase tracking-[0.45em] text-secondary">
+                    Reading Soon
+                  </span>
+                </div>
+                <div className="relative">
+                  <div className="max-h-[52vh] overflow-y-auto pb-12 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                    <div className="grid grid-cols-4 gap-5">
+                      {nextBooks.map((book) => {
+                        const isSelected = selectedBook?.id === book.id;
+                        return (
+                          <div key={book.id} className="flex justify-start w-[140px]">
+                            <button
+                              type="button"
+                              onClick={() => handleBookSelect(book.id)}
+                              aria-pressed={isSelected}
+                              className={`relative flex w-full shrink-0 overflow-hidden rounded-lg transition-transform focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent aspect-[2/3] ${
+                                isSelected
+                                  ? "-translate-y-1"
+                                  : "hover:-translate-y-1"
+                              }`}
+                            >
+                              <BookArt book={book} />
+                              <span className="sr-only">{book.title} by {book.author}</span>
+                            </button>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-background to-transparent" />
+                </div>
+              </div>
+            )}
+
             <div className="flex flex-1 flex-col gap-4 lg:pl-4">
               <div className="flex items-center justify-end gap-3">
                 {/* V2 'text-secondary' */}

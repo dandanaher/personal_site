@@ -7,7 +7,7 @@ export type LibraryBook = {
   coverColor: string;
   spineColor: string;
   accentColor: string;
-  status: "current" | "completed";
+  status: "current" | "next" | "completed";
   description: string;
   coverScale?: number;
   rating?: number; // 0.5-5 stars (supports half stars)
@@ -29,6 +29,160 @@ export const libraryBooks: LibraryBook[] = [
     description:
       "Classic sci-fi saga kicking off the Foundation series while tracking Hari Seldon's psychohistory in motion.",
     pageCount: 255,
+  },
+  {
+    id: "foundation-and-empire",
+    title: "Foundation and Empire",
+    author: "Isaac Asimov",
+    year: 1952,
+    coverImage: "https://covers.openlibrary.org/b/isbn/9780008117504-L.jpg",
+    coverColor: "#1A0F2E",
+    spineColor: "#2A1A4A",
+    accentColor: "#9B59B6",
+    status: "next",
+    description:
+      "The Foundation faces its greatest threat as the Mule disrupts Seldon's carefully calculated plan.",
+    pageCount: 282,
+  },
+  {
+    id: "second-foundation",
+    title: "Second Foundation",
+    author: "Isaac Asimov",
+    year: 1953,
+    coverImage: "https://covers.openlibrary.org/b/isbn/9780008117511-L.jpg",
+    coverColor: "#2C1810",
+    spineColor: "#3F2516",
+    accentColor: "#E67E22",
+    status: "next",
+    description:
+      "The search for the mysterious Second Foundation becomes a deadly game of psychic chess.",
+    pageCount: 296,
+  },
+  {
+    id: "the-singularity-is-near",
+    title: "The Singularity Is Near",
+    author: "Ray Kurzweil",
+    year: 2005,
+    coverImage: "https://covers.openlibrary.org/b/isbn/9780143037880-L.jpg",
+    coverColor: "#1E3A8A",
+    spineColor: "#1E40AF",
+    accentColor: "#60A5FA",
+    status: "current",
+    description:
+      "A visionary forecast of the merging of human and machine intelligence in the near future.",
+    pageCount: 652,
+  },
+  {
+    id: "how-to-create-a-mind",
+    title: "How to Create a Mind",
+    author: "Ray Kurzweil",
+    year: 2012,
+    coverImage: "https://covers.openlibrary.org/b/isbn/9780143124047-L.jpg",
+    coverColor: "#18181B",
+    spineColor: "#27272A",
+    accentColor: "#A78BFA",
+    status: "next",
+    description:
+      "Exploring the pattern recognition theory of mind and how to reverse-engineer the brain.",
+    pageCount: 336,
+  },
+  {
+    id: "the-singularity-is-nearer",
+    title: "The Singularity Is Nearer",
+    author: "Ray Kurzweil",
+    year: 2024,
+    coverImage: "https://covers.openlibrary.org/b/isbn/9780399562761-L.jpg",
+    coverColor: "#0C4A6E",
+    spineColor: "#075985",
+    accentColor: "#38BDF8",
+    status: "next",
+    description:
+      "An updated vision of the technological singularity and humanity's merger with AI.",
+    pageCount: 432,
+  },
+  {
+    id: "atlas-shrugged",
+    title: "Atlas Shrugged",
+    author: "Ayn Rand",
+    year: 1957,
+    coverImage: "https://covers.openlibrary.org/b/isbn/9780451191144-L.jpg",
+    coverColor: "#1C1917",
+    spineColor: "#292524",
+    accentColor: "#D97706",
+    status: "next",
+    description:
+      "A philosophical epic about individualism and the role of the mind in human existence.",
+    pageCount: 1168,
+  },
+  {
+    id: "the-science-of-rapid-skill-acquisition",
+    title: "The Science of Rapid Skill Acquisition",
+    author: "Peter Hollins",
+    year: 2019,
+    coverImage: "https://books.google.com/books/content?id=ys6oDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    coverColor: "#14532D",
+    spineColor: "#166534",
+    accentColor: "#4ADE80",
+    status: "next",
+    description:
+      "Evidence-based techniques for accelerated learning and mastering new skills efficiently.",
+    pageCount: 182,
+  },
+  {
+    id: "breakneck",
+    title: "Breakneck",
+    author: "Dan Wang",
+    year: 2024,
+    coverImage: "https://storage.googleapis.com/du-prd/books/images/9781324106036.jpg",
+    coverColor: "#7C2D12",
+    spineColor: "#991B1B",
+    accentColor: "#F87171",
+    status: "next",
+    description:
+      "An exploration of speed, innovation, and progress in modern technological development.",
+    pageCount: 256,
+  },
+  {
+    id: "that-hideous-strength",
+    title: "That Hideous Strength",
+    author: "C.S. Lewis",
+    year: 1945,
+    coverImage: "https://books.google.com/books/content?id=IbVTcgOyCRoC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    coverColor: "#44403C",
+    spineColor: "#57534E",
+    accentColor: "#A8A29E",
+    status: "next",
+    description:
+      "A modern fairy-tale for grown-ups about technocratic tyranny and spiritual warfare.",
+    pageCount: 384,
+  },
+  {
+    id: "perelandra",
+    title: "Perelandra",
+    author: "C.S. Lewis",
+    year: 1943,
+    coverImage: "https://covers.openlibrary.org/b/isbn/9780743234917-L.jpg",
+    coverColor: "#134E4A",
+    spineColor: "#115E59",
+    accentColor: "#5EEAD4",
+    status: "next",
+    description:
+      "A voyage to Venus where paradise remains unfallen and temptation takes new forms.",
+    pageCount: 272,
+  },
+  {
+    id: "out-of-the-silent-planet",
+    title: "Out of the Silent Planet",
+    author: "C.S. Lewis",
+    year: 1938,
+    coverImage: "https://books.google.com/books/content?id=0KoY9664480C&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+    coverColor: "#831843",
+    spineColor: "#9F1239",
+    accentColor: "#F9A8D4",
+    status: "next",
+    description:
+      "A Cambridge scholar is kidnapped to Mars and discovers a world untouched by human sin.",
+    pageCount: 224,
   },
   {
     id: "red-mars",

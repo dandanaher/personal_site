@@ -48,7 +48,7 @@ export const Library = () => {
       className="flex h-screen flex-col overflow-hidden p-6 md:p-16 text-primary"
     >
       {/* Page Title */}
-      <div className="pt-16 md:-mt-8 md:pt-0 pb-6 md:pb-8 md:pl-8">
+      <div className="pt-16 md:-mt-8 md:pt-0 pb-8 md:pb-12 md:pl-8">
         <h1 className="mb-1 font-serif text-5xl tracking-tight text-primary">
           Library
         </h1>
@@ -137,7 +137,7 @@ export const Library = () => {
             </div>
 
             {/* Desktop Layout: Original layout */}
-            <div className="hidden md:flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-12">
+            <div className="hidden md:flex md:pl-8 flex-col gap-6 lg:flex-row lg:items-start lg:gap-12">
               <HeroBook book={selectedBook} />
               <div className="flex flex-1 flex-col gap-5">
                 <div>
@@ -323,7 +323,7 @@ export const Library = () => {
           </div>
 
           {/* Desktop Layout - Original */}
-          <div className="hidden md:flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-10">
+          <div className="hidden md:flex md:pl-8 flex-col gap-6 lg:flex-row lg:items-start lg:gap-10">
             {currentBooks.length > 0 && (
               <div className="flex w-[140px] shrink-0 flex-col items-start gap-3">
                 {/* V2 'text-secondary' */}

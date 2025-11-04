@@ -22,9 +22,22 @@ export const Thoughts = () => {
   return (
     <div className="relative h-screen overflow-hidden pt-6 px-6 md:pt-16 md:px-16 text-primary">
       {/* Blog Posts - extends behind title */}
-      <div className="absolute inset-0 pt-6 px-6 md:pt-16 md:px-16">
-        <div className="h-full overflow-y-auto scrollbar-hide md:pl-8">
-          <div className="max-w-3xl space-y-6 pt-32 md:pt-24">
+      <div className="absolute inset-0 px-6 md:px-16">
+        <div
+          className="relative h-full overflow-y-auto scrollbar-hide md:pl-8 max-w-2xl"
+          style={{
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+          }}
+        >
+          {/* Top fade overlay - uses CSS variable for theme-aware gradient */}
+          <div
+            className="sticky top-0 left-0 right-0 h-48 pointer-events-none z-30 transition-all duration-300 -mb-48"
+            style={{
+              background: 'linear-gradient(to bottom, var(--color-bg) 0%, var(--color-bg) 40%, color-mix(in srgb, var(--color-bg) 90%, transparent) 60%, color-mix(in srgb, var(--color-bg) 60%, transparent) 80%, transparent 100%)'
+            }}
+          />
+          <div className="space-y-6 pt-56 md:pt-52">
             {thoughtEntries.length > 0 ? (
               thoughtEntries.map((thought) => (
                 <ThoughtCard
@@ -45,14 +58,6 @@ export const Thoughts = () => {
           </div>
         </div>
       </div>
-
-      {/* Top fade overlay - uses CSS variable for theme-aware gradient */}
-      <div
-        className="absolute top-0 left-0 right-0 h-48 pointer-events-none z-30 transition-all duration-300"
-        style={{
-          background: 'linear-gradient(to bottom, var(--color-bg) 0%, var(--color-bg) 40%, color-mix(in srgb, var(--color-bg) 90%, transparent) 60%, color-mix(in srgb, var(--color-bg) 60%, transparent) 80%, transparent 100%)'
-        }}
-      />
 
       {/* Page Title - floats on top */}
       <div className="relative pt-16 md:-mt-8 md:pt-0 pb-8 md:pb-12 md:pl-8 z-40 pointer-events-none">

@@ -20,9 +20,42 @@ export const Thoughts = () => {
   };
 
   return (
-    <div className="flex h-screen flex-col overflow-hidden p-6 md:p-16 text-primary">
-      {/* Page Title */}
-      <div className="pt-16 md:-mt-8 md:pt-0 pb-8 md:pb-12 md:pl-8">
+    <div className="relative h-screen overflow-hidden pt-6 px-6 md:pt-16 md:px-16 text-primary">
+      {/* Blog Posts - extends behind title */}
+      <div className="absolute inset-0 pt-6 px-6 md:pt-16 md:px-16">
+        <div className="h-full overflow-y-auto scrollbar-hide md:pl-8">
+          <div className="max-w-3xl space-y-6 pt-32 md:pt-24">
+            {thoughtEntries.length > 0 ? (
+              thoughtEntries.map((thought) => (
+                <ThoughtCard
+                  key={thought.id}
+                  thought={thought}
+                  isExpanded={expandedId === thought.id}
+                  onToggle={() => handleToggle(thought.id)}
+                  formatDate={formatDate}
+                />
+              ))
+            ) : (
+              <div className="flex h-32 w-full items-center justify-center border border-dashed border-secondary/50 rounded-xl">
+                <p className="text-sm text-secondary">
+                  No thoughts yet. Check back soon!
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Top fade overlay - uses CSS variable for theme-aware gradient */}
+      <div
+        className="absolute top-0 left-0 right-0 h-48 pointer-events-none z-30 transition-all duration-300"
+        style={{
+          background: 'linear-gradient(to bottom, var(--color-bg) 0%, var(--color-bg) 40%, color-mix(in srgb, var(--color-bg) 90%, transparent) 60%, color-mix(in srgb, var(--color-bg) 60%, transparent) 80%, transparent 100%)'
+        }}
+      />
+
+      {/* Page Title - floats on top */}
+      <div className="relative pt-16 md:-mt-8 md:pt-0 pb-8 md:pb-12 md:pl-8 z-40 pointer-events-none">
         <h1 className="mb-1 font-serif text-5xl tracking-tight text-primary">
           Thoughts
         </h1>
@@ -30,29 +63,6 @@ export const Thoughts = () => {
           reflections on spaceflight, engineering, and technology
         </p>
       </div>
-
-      {/* Blog Posts */}
-      <section className="flex-1 overflow-y-auto pb-16 scrollbar-hide md:pl-8">
-        <div className="max-w-3xl space-y-6">
-          {thoughtEntries.length > 0 ? (
-            thoughtEntries.map((thought) => (
-              <ThoughtCard
-                key={thought.id}
-                thought={thought}
-                isExpanded={expandedId === thought.id}
-                onToggle={() => handleToggle(thought.id)}
-                formatDate={formatDate}
-              />
-            ))
-          ) : (
-            <div className="flex h-32 w-full items-center justify-center border border-dashed border-secondary/50 rounded-xl">
-              <p className="text-sm text-secondary">
-                No thoughts yet. Check back soon!
-              </p>
-            </div>
-          )}
-        </div>
-      </section>
     </div>
   );
 };
@@ -74,7 +84,13 @@ const ThoughtCard = ({
     <article className="group">
       <button
         onClick={onToggle}
-        className="w-full text-left rounded-xl border border-[rgba(157,205,180,0.3)] bg-[rgba(157,205,180,0.15)] shadow-[0_2px_6px_rgba(157,205,180,0.2),inset_0_1px_1px_rgba(255,255,255,0.3)] backdrop-blur-lg p-6 transition-all duration-300 hover:border-[rgba(157,205,180,0.5)] hover:bg-[rgba(157,205,180,0.25)] hover:shadow-[0_3px_10px_rgba(157,205,180,0.3),inset_0_1px_1px_rgba(255,255,255,0.4)]"
+        className={`relative w-full text-left rounded-xl border p-6 backdrop-blur-lg transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 ${
+          isExpanded
+            ? // Expanded: Green glass material
+              "border-[rgba(157,205,180,0.5)] bg-[rgba(157,205,180,0.25)] shadow-[0_3px_10px_rgba(157,205,180,0.3),inset_0_1px_1px_rgba(255,255,255,0.4)]"
+            : // Not expanded: Clear glass material with subtle green on hover
+              "border-white/20 bg-transparent shadow-[0_2px_6px_rgba(0,0,0,0.05),inset_0_1px_1px_rgba(255,255,255,0.1)] hover:border-[rgba(157,205,180,0.3)] hover:bg-[rgba(157,205,180,0.1)] hover:shadow-[0_2px_6px_rgba(157,205,180,0.15),inset_0_1px_1px_rgba(255,255,255,0.2)] dark:border-white/10 dark:hover:border-[rgba(157,205,180,0.3)]"
+        }`}
       >
         {/* Header */}
         <div className="flex items-start justify-between gap-4 mb-3">

@@ -6,6 +6,7 @@ export type LibraryBook = {
   coverImage?: string;
   coverColor: string;
   spineColor: string;
+  spineTextColor?: string;
   accentColor: string;
   status: "current" | "next" | "completed";
   description: string;
@@ -52,6 +53,7 @@ export const libraryBooks: LibraryBook[] = [
     coverImage: "https://covers.openlibrary.org/b/isbn/9780008117511-L.jpg",
     coverColor: "#2C1810",
     spineColor: "#9591A0",
+    spineTextColor: "#FFFFFF",
     accentColor: "#E67E22",
     status: "next",
     description:
@@ -66,6 +68,7 @@ export const libraryBooks: LibraryBook[] = [
     coverImage: "https://covers.openlibrary.org/b/isbn/9780143037880-L.jpg",
     coverColor: "#1E3A8A",
     spineColor: "#070707",
+    spineTextColor: "#FFFFFF",
     accentColor: "#60A5FA",
     status: "current",
     description:
@@ -80,6 +83,7 @@ export const libraryBooks: LibraryBook[] = [
     coverImage: "https://covers.openlibrary.org/b/isbn/9780143124047-L.jpg",
     coverColor: "#18181B",
     spineColor: "#FDFDFD",
+    spineTextColor: "#000000",
     accentColor: "#A78BFA",
     status: "next",
     description:
@@ -94,6 +98,7 @@ export const libraryBooks: LibraryBook[] = [
     coverImage: "https://covers.openlibrary.org/b/isbn/9780399562761-L.jpg",
     coverColor: "#0C4A6E",
     spineColor: "#0E1013",
+    spineTextColor: "#FFFFFF",
     accentColor: "#38BDF8",
     status: "next",
     description:
@@ -107,7 +112,8 @@ export const libraryBooks: LibraryBook[] = [
     year: 1957,
     coverImage: "https://covers.openlibrary.org/b/isbn/9780451191144-L.jpg",
     coverColor: "#1C1917",
-    spineColor: "#292524",
+    spineColor: "#303117",
+    spineTextColor: "#FFFFFF",
     accentColor: "#D97706",
     status: "next",
     description:
@@ -121,7 +127,8 @@ export const libraryBooks: LibraryBook[] = [
     year: 2019,
     coverImage: "https://books.google.com/books/content?id=ys6oDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     coverColor: "#14532D",
-    spineColor: "#CED4CE",
+    spineColor: "#D0E0D0",
+    spineTextColor: "#000000",
     accentColor: "#4ADE80",
     status: "next",
     description:
@@ -135,7 +142,8 @@ export const libraryBooks: LibraryBook[] = [
     year: 2024,
     coverImage: "https://storage.googleapis.com/du-prd/books/images/9781324106036.jpg",
     coverColor: "#7C2D12",
-    spineColor: "#A19D98",
+    spineColor: "#B0B0B0",
+    spineTextColor: "#FFFFFF",
     accentColor: "#F87171",
     status: "next",
     description:
@@ -149,7 +157,8 @@ export const libraryBooks: LibraryBook[] = [
     year: 1945,
     coverImage: "https://books.google.com/books/content?id=IbVTcgOyCRoC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     coverColor: "#44403C",
-    spineColor: "#C9C990",
+    spineColor: "#F0F080",
+    spineTextColor: "#000000",
     accentColor: "#A8A29E",
     status: "next",
     description:
@@ -164,6 +173,7 @@ export const libraryBooks: LibraryBook[] = [
     coverImage: "https://covers.openlibrary.org/b/isbn/9780743234917-L.jpg",
     coverColor: "#134E4A",
     spineColor: "#93807F",
+    spineTextColor: "#FFFFFF",
     accentColor: "#5EEAD4",
     status: "next",
     description:
@@ -177,7 +187,8 @@ export const libraryBooks: LibraryBook[] = [
     year: 1938,
     coverImage: "https://books.google.com/books/content?id=0KoY9664480C&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     coverColor: "#831843",
-    spineColor: "#169FC1",
+    spineColor: "#10A0C0",
+    spineTextColor: "#FFFFFF",
     accentColor: "#F9A8D4",
     status: "next",
     description:
@@ -192,6 +203,7 @@ export const libraryBooks: LibraryBook[] = [
     coverImage: "https://covers.openlibrary.org/b/isbn/9780553560732-L.jpg",
     coverColor: "#7F1D1D",
     spineColor: "#3E2013",
+    spineTextColor: "#FFFFFF",
     accentColor: "#F87171",
     status: "completed",
     description:
@@ -206,6 +218,7 @@ export const libraryBooks: LibraryBook[] = [
     coverImage: "https://covers.openlibrary.org/b/isbn/9780553572391-L.jpg",
     coverColor: "#14532D",
     spineColor: "#5A3628",
+    spineTextColor: "#FFFFFF",
     accentColor: "#6EE7B7",
     status: "completed",
     description:
@@ -220,6 +233,7 @@ export const libraryBooks: LibraryBook[] = [
     coverImage: "https://covers.openlibrary.org/b/isbn/9780553573350-L.jpg",
     coverColor: "#1D4ED8",
     spineColor: "#131119",
+    spineTextColor: "#FFFFFF",
     accentColor: "#93C5FD",
     status: "completed",
     description:
@@ -233,7 +247,8 @@ export const libraryBooks: LibraryBook[] = [
     year: 2020,
     coverImage: "https://images2.penguinrandomhouse.com/cover/9781529125573",
     coverColor: "#0B192F",
-    spineColor: "#947D85",
+    spineColor: "#808090",
+    spineTextColor: "#FFFFFF",
     accentColor: "#38BDF8",
     status: "completed",
     description:
@@ -250,7 +265,8 @@ export const libraryBooks: LibraryBook[] = [
     year: 2006,
     coverImage: "https://books.google.com/books/content?id=QxbFBAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     coverColor: "#1E2746",
-    spineColor: "#2F5D91",
+    spineColor: "#104080",
+    spineTextColor: "#FFFFFF",
     accentColor: "#8B5CF6",
     status: "completed",
     description:
@@ -265,6 +281,7 @@ export const libraryBooks: LibraryBook[] = [
     coverImage: "https://covers.openlibrary.org/b/id/10526598-L.jpg",
     coverColor: "#0F172A",
     spineColor: "#1D171B",
+    spineTextColor: "#FFFFFF",
     accentColor: "#22D3EE",
     status: "completed",
     description:
@@ -279,6 +296,7 @@ export const libraryBooks: LibraryBook[] = [
     coverImage: "https://covers.openlibrary.org/b/id/8079769-L.jpg",
     coverColor: "#2D1B46",
     spineColor: "#44393D",
+    spineTextColor: "#FFFFFF",
     accentColor: "#F97316",
     status: "completed",
     description:
@@ -293,6 +311,7 @@ export const libraryBooks: LibraryBook[] = [
     coverImage: "https://covers.openlibrary.org/b/id/8175193-L.jpg",
     coverColor: "#10243C",
     spineColor: "#504653",
+    spineTextColor: "#FFFFFF",
     accentColor: "#4CC9F0",
     status: "completed",
     description:
@@ -306,7 +325,8 @@ export const libraryBooks: LibraryBook[] = [
     year: 2012,
     coverImage: "https://covers.openlibrary.org/b/id/7314238-L.jpg",
     coverColor: "#0F2A49",
-    spineColor: "#80726A",
+    spineColor: "#F0F0F0",
+    spineTextColor: "#000000",
     accentColor: "#F59E0B",
     status: "completed",
     description:
@@ -320,7 +340,8 @@ export const libraryBooks: LibraryBook[] = [
     year: 2011,
     coverImage: "https://covers.openlibrary.org/b/id/7314237-L.jpg",
     coverColor: "#111B2B",
-    spineColor: "#557889",
+    spineColor: "#105070",
+    spineTextColor: "#FFFFFF",
     accentColor: "#38BDF8",
     status: "completed",
     description:
@@ -335,6 +356,7 @@ export const libraryBooks: LibraryBook[] = [
     coverImage: "https://covers.openlibrary.org/b/isbn/9780441172719-L.jpg",
     coverColor: "#A16207",
     spineColor: "#FFFFFF",
+    spineTextColor: "#000000",
     accentColor: "#FACC15",
     status: "completed",
     description:
@@ -348,7 +370,8 @@ export const libraryBooks: LibraryBook[] = [
     year: 1969,
     coverImage: "https://covers.openlibrary.org/b/isbn/9780593098233-L.jpg",
     coverColor: "#7C2D12",
-    spineColor: "#5F1B0B",
+    spineColor: "#103048",
+    spineTextColor: "#FFFFFF",
     accentColor: "#FDBA74",
     status: "completed",
     description:
@@ -362,7 +385,8 @@ export const libraryBooks: LibraryBook[] = [
     year: 1976,
     coverImage: "https://covers.openlibrary.org/b/isbn/9780593098240-L.jpg",
     coverColor: "#92400E",
-    spineColor: "#7C2D12",
+    spineColor: "#B56267",
+    spineTextColor: "#FFFFFF",
     accentColor: "#FCD34D",
     status: "completed",
     description:
@@ -377,7 +401,8 @@ export const libraryBooks: LibraryBook[] = [
     coverImage:
       "https://books.google.com/books/content?id=-CL-6T5rqHEC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     coverColor: "#3F3D56",
-    spineColor: "#15191B",
+    spineColor: "#000000",
+    spineTextColor: "#FFFFFF",
     accentColor: "#F2CC8F",
     status: "completed",
     description:
@@ -392,7 +417,8 @@ export const libraryBooks: LibraryBook[] = [
     coverImage:
       "https://books.google.com/books/content?id=ufbtAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     coverColor: "#264653",
-    spineColor: "#AF842B",
+    spineColor: "#E0A010",
+    spineTextColor: "#FFFFFF",
     accentColor: "#2A9D8F",
     status: "completed",
     description:
@@ -407,7 +433,8 @@ export const libraryBooks: LibraryBook[] = [
     coverImage:
       "https://books.google.com/books/content?id=TDyDzQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     coverColor: "#0B1F3A",
-    spineColor: "#948F91",
+    spineColor: "#90B0D0",
+    spineTextColor: "#FFFFFF",
     accentColor: "#F97316",
     status: "completed",
     description:
@@ -421,7 +448,8 @@ export const libraryBooks: LibraryBook[] = [
     year: 1979,
     coverImage: "https://covers.openlibrary.org/b/isbn/9781529034523-L.jpg",
     coverColor: "#065F46",
-    spineColor: "#064E3B",
+    spineColor: "#D10724",
+    spineTextColor: "#FFFFFF",
     accentColor: "#34D399",
     status: "completed",
     description:
@@ -435,7 +463,8 @@ export const libraryBooks: LibraryBook[] = [
     year: 1980,
     coverImage: "https://covers.openlibrary.org/b/isbn/9781529034530-L.jpg",
     coverColor: "#433878",
-    spineColor: "#2E236C",
+    spineColor: "#059ED0",
+    spineTextColor: "#FFFFFF",
     accentColor: "#FACC15",
     status: "completed",
     description:
@@ -450,7 +479,8 @@ export const libraryBooks: LibraryBook[] = [
     coverImage:
       "https://cdn.waterstones.com/bookjackets/large/9781/5290/9781529034547.jpg",
     coverColor: "#0F172A",
-    spineColor: "#04969C",
+    spineColor: "#00A0A0",
+    spineTextColor: "#FFFFFF",
     accentColor: "#F472B6",
     status: "completed",
     description:
@@ -464,7 +494,8 @@ export const libraryBooks: LibraryBook[] = [
     year: 1932,
     coverImage: "https://covers.openlibrary.org/b/isbn/9780099518471-L.jpg",
     coverColor: "#1E293B",
-    spineColor: "#111827",
+    spineColor: "#8F6E70",
+    spineTextColor: "#FFFFFF",
     accentColor: "#60A5FA",
     status: "completed",
     description:
@@ -493,7 +524,8 @@ export const libraryBooks: LibraryBook[] = [
     coverImage:
       "https://books.google.com/books/publisher/content?id=oG9_AwAAQBAJ&printsec=frontcover&img=1&zoom=4&edge=curl&source=gbs_api",
     coverColor: "#2B193D",
-    spineColor: "#434F48",
+    spineColor: "#102030",
+    spineTextColor: "#FFFFFF",
     accentColor: "#F2A7C6",
     status: "completed",
     description:
@@ -508,6 +540,7 @@ export const libraryBooks: LibraryBook[] = [
     coverImage: "https://covers.openlibrary.org/b/isbn/9780374276805-L.jpg",
     coverColor: "#12212F",
     spineColor: "#686A63",
+    spineTextColor: "#FFFFFF",
     accentColor: "#7DD3FC",
     status: "completed",
     description:
@@ -522,7 +555,8 @@ export const libraryBooks: LibraryBook[] = [
     coverImage:
       "https://books.google.com/books/content?id=zGZ-3fHu8N0C&printsec=frontcover&img=1&zoom=4&edge=curl&source=gbs_api",
     coverColor: "#1C1F2E",
-    spineColor: "#465752",
+    spineColor: "#101030",
+    spineTextColor: "#FFFFFF",
     accentColor: "#A3E635",
     status: "completed",
     description:
@@ -537,7 +571,8 @@ export const libraryBooks: LibraryBook[] = [
     coverImage:
       "https://books.google.com/books/content?id=R7QSDnqjWRkC&printsec=frontcover&img=1&zoom=4&edge=curl&source=gbs_api",
     coverColor: "#0F172A",
-    spineColor: "#4F6743",
+    spineColor: "#000010",
+    spineTextColor: "#FFFFFF",
     accentColor: "#818CF8",
     status: "completed",
     description:
@@ -552,6 +587,7 @@ export const libraryBooks: LibraryBook[] = [
     coverImage: "https://covers.openlibrary.org/b/isbn/9780140437645-L.jpg",
     coverColor: "#3E2723",
     spineColor: "#E2E2CD",
+    spineTextColor: "#000000",
     accentColor: "#D4A373",
     status: "completed",
     description:
@@ -566,6 +602,7 @@ export const libraryBooks: LibraryBook[] = [
     coverImage: "https://covers.openlibrary.org/b/id/8746964-L.jpg",
     coverColor: "#1C1C1C",
     spineColor: "#19191D",
+    spineTextColor: "#FFFFFF",
     accentColor: "#EF4444",
     status: "completed",
     description:
@@ -586,5 +623,155 @@ export const libraryBooks: LibraryBook[] = [
     description:
       "The Band of the Hawk charges toward glory as betrayals sharpen in Midland.",
     pageCount: 704,
+  },
+  {
+    id: "consider-phlebas",
+    title: "Consider Phlebas",
+    author: "Iain M. Banks",
+    year: 1987,
+    coverImage: "https://covers.openlibrary.org/b/isbn/9780316005388-L.jpg",
+    coverColor: "#1A1A1A",
+    spineColor: "#3C8695",
+    spineTextColor: "#FFFFFF",
+    accentColor: "#60A5FA",
+    status: "next",
+    description:
+      "The Culture and Idiran Empire clash in a galaxy-spanning war as Horza hunts a rogue Mind.",
+    pageCount: 471,
+  },
+  {
+    id: "the-player-of-games",
+    title: "The Player of Games",
+    author: "Iain M. Banks",
+    year: 1988,
+    coverImage: "https://covers.openlibrary.org/b/isbn/9780316005401-L.jpg",
+    coverColor: "#2C1810",
+    spineColor: "#1B2E4D",
+    spineTextColor: "#FFFFFF",
+    accentColor: "#F59E0B",
+    status: "next",
+    description:
+      "A master game player is manipulated into competing in the Empire of Azad's ultimate contest.",
+    pageCount: 309,
+  },
+  {
+    id: "use-of-weapons",
+    title: "Use of Weapons",
+    author: "Iain M. Banks",
+    year: 1990,
+    coverImage: "https://covers.openlibrary.org/b/isbn/9780316030571-L.jpg",
+    coverColor: "#1C1917",
+    spineColor: "#826E9F",
+    spineTextColor: "#FFFFFF",
+    accentColor: "#EF4444",
+    status: "next",
+    description:
+      "A Culture mercenary's past and present intertwine in a mind-bending narrative of war and morality.",
+    pageCount: 411,
+  },
+  {
+    id: "the-state-of-the-art",
+    title: "The State of the Art",
+    author: "Iain M. Banks",
+    year: 1991,
+    coverImage: "https://covers.openlibrary.org/b/isbn/1857230302-L.jpg",
+    coverColor: "#0F172A",
+    spineColor: "#43381D",
+    spineTextColor: "#FFFFFF",
+    accentColor: "#34D399",
+    status: "next",
+    description:
+      "Culture short stories including a visit to 1970s Earth and the consequences of first contact.",
+    pageCount: 224,
+  },
+  {
+    id: "excession",
+    title: "Excession",
+    author: "Iain M. Banks",
+    year: 1996,
+    coverImage: "https://covers.openlibrary.org/b/isbn/185723457X-L.jpg",
+    coverColor: "#1E1E1E",
+    spineColor: "#202030",
+    spineTextColor: "#FFFFFF",
+    accentColor: "#A78BFA",
+    status: "next",
+    description:
+      "An Outside Context Problem threatens the Culture as Minds scheme and ancient secrets emerge.",
+    pageCount: 499,
+  },
+  {
+    id: "inversions",
+    title: "Inversions",
+    author: "Iain M. Banks",
+    year: 1998,
+    coverImage: "https://covers.openlibrary.org/b/isbn/1857237633-L.jpg",
+    coverColor: "#44403C",
+    spineColor: "#648B4C",
+    spineTextColor: "#FFFFFF",
+    accentColor: "#FBBF24",
+    status: "next",
+    description:
+      "Two mysterious figures in a medieval world hint at Culture intervention from the shadows.",
+    pageCount: 342,
+  },
+  {
+    id: "look-to-windward",
+    title: "Look to Windward",
+    author: "Iain M. Banks",
+    year: 2000,
+    coverImage: "https://covers.openlibrary.org/b/isbn/9780743421928-L.jpg",
+    coverColor: "#1E3A8A",
+    spineColor: "#8E9079",
+    spineTextColor: "#FFFFFF",
+    accentColor: "#93C5FD",
+    status: "next",
+    description:
+      "Eight centuries after war, an assassination plot targets a Culture Orbital amid grief and music.",
+    pageCount: 403,
+  },
+  {
+    id: "matter",
+    title: "Matter",
+    author: "Iain M. Banks",
+    year: 2008,
+    coverImage: "https://covers.openlibrary.org/b/isbn/9781841494173-L.jpg",
+    coverColor: "#0C4A6E",
+    spineColor: "#402320",
+    spineTextColor: "#FFFFFF",
+    accentColor: "#38BDF8",
+    status: "next",
+    description:
+      "A prince seeks vengeance while his siblings navigate Culture politics on a massive Shellworld.",
+    pageCount: 593,
+  },
+  {
+    id: "surface-detail",
+    title: "Surface Detail",
+    author: "Iain M. Banks",
+    year: 2010,
+    coverImage: "https://covers.openlibrary.org/b/isbn/0316123404-L.jpg",
+    coverColor: "#18181B",
+    spineColor: "#2B2418",
+    spineTextColor: "#FFFFFF",
+    accentColor: "#FB923C",
+    status: "next",
+    description:
+      "Virtual hells and a simulated war raise questions of consciousness, death, and digital afterlife.",
+    pageCount: 627,
+  },
+  {
+    id: "the-hydrogen-sonata",
+    title: "The Hydrogen Sonata",
+    author: "Iain M. Banks",
+    year: 2012,
+    coverImage: "https://covers.openlibrary.org/b/isbn/0356501493-L.jpg",
+    coverColor: "#14532D",
+    spineColor: "#4D4F5B",
+    spineTextColor: "#FFFFFF",
+    accentColor: "#86EFAC",
+    status: "next",
+    description:
+      "A civilization prepares to Sublime as ancient secrets threaten their transcendence.",
+    pageCount: 517,
   },
 ];

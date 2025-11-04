@@ -23,7 +23,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 1951,
     coverImage: "https://covers.openlibrary.org/b/isbn/9780008117498-L.jpg",
     coverColor: "#0A1E3F",
-    spineColor: "#102A52",
+    spineColor: "#948FA7",
     accentColor: "#F1C40F",
     status: "current",
     description:
@@ -37,7 +37,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 1952,
     coverImage: "https://covers.openlibrary.org/b/isbn/9780008117504-L.jpg",
     coverColor: "#1A0F2E",
-    spineColor: "#2A1A4A",
+    spineColor: "#918CA5",
     accentColor: "#9B59B6",
     status: "next",
     description:
@@ -51,7 +51,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 1953,
     coverImage: "https://covers.openlibrary.org/b/isbn/9780008117511-L.jpg",
     coverColor: "#2C1810",
-    spineColor: "#3F2516",
+    spineColor: "#9591A0",
     accentColor: "#E67E22",
     status: "next",
     description:
@@ -65,7 +65,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 2005,
     coverImage: "https://covers.openlibrary.org/b/isbn/9780143037880-L.jpg",
     coverColor: "#1E3A8A",
-    spineColor: "#1E40AF",
+    spineColor: "#070707",
     accentColor: "#60A5FA",
     status: "current",
     description:
@@ -79,7 +79,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 2012,
     coverImage: "https://covers.openlibrary.org/b/isbn/9780143124047-L.jpg",
     coverColor: "#18181B",
-    spineColor: "#27272A",
+    spineColor: "#FDFDFD",
     accentColor: "#A78BFA",
     status: "next",
     description:
@@ -93,7 +93,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 2024,
     coverImage: "https://covers.openlibrary.org/b/isbn/9780399562761-L.jpg",
     coverColor: "#0C4A6E",
-    spineColor: "#075985",
+    spineColor: "#0E1013",
     accentColor: "#38BDF8",
     status: "next",
     description:
@@ -121,7 +121,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 2019,
     coverImage: "https://books.google.com/books/content?id=ys6oDwAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     coverColor: "#14532D",
-    spineColor: "#166534",
+    spineColor: "#CED4CE",
     accentColor: "#4ADE80",
     status: "next",
     description:
@@ -135,7 +135,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 2024,
     coverImage: "https://storage.googleapis.com/du-prd/books/images/9781324106036.jpg",
     coverColor: "#7C2D12",
-    spineColor: "#991B1B",
+    spineColor: "#A19D98",
     accentColor: "#F87171",
     status: "next",
     description:
@@ -149,7 +149,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 1945,
     coverImage: "https://books.google.com/books/content?id=IbVTcgOyCRoC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     coverColor: "#44403C",
-    spineColor: "#57534E",
+    spineColor: "#C9C990",
     accentColor: "#A8A29E",
     status: "next",
     description:
@@ -163,7 +163,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 1943,
     coverImage: "https://covers.openlibrary.org/b/isbn/9780743234917-L.jpg",
     coverColor: "#134E4A",
-    spineColor: "#115E59",
+    spineColor: "#93807F",
     accentColor: "#5EEAD4",
     status: "next",
     description:
@@ -177,7 +177,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 1938,
     coverImage: "https://books.google.com/books/content?id=0KoY9664480C&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     coverColor: "#831843",
-    spineColor: "#9F1239",
+    spineColor: "#169FC1",
     accentColor: "#F9A8D4",
     status: "next",
     description:
@@ -191,7 +191,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 1992,
     coverImage: "https://covers.openlibrary.org/b/isbn/9780553560732-L.jpg",
     coverColor: "#7F1D1D",
-    spineColor: "#64121D",
+    spineColor: "#3E2013",
     accentColor: "#F87171",
     status: "completed",
     description:
@@ -205,7 +205,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 1993,
     coverImage: "https://covers.openlibrary.org/b/isbn/9780553572391-L.jpg",
     coverColor: "#14532D",
-    spineColor: "#0F3F21",
+    spineColor: "#5A3628",
     accentColor: "#6EE7B7",
     status: "completed",
     description:
@@ -219,7 +219,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 1996,
     coverImage: "https://covers.openlibrary.org/b/isbn/9780553573350-L.jpg",
     coverColor: "#1D4ED8",
-    spineColor: "#1E3A8A",
+    spineColor: "#131119",
     accentColor: "#93C5FD",
     status: "completed",
     description:
@@ -233,7 +233,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 2020,
     coverImage: "https://images2.penguinrandomhouse.com/cover/9781529125573",
     coverColor: "#0B192F",
-    spineColor: "#132540",
+    spineColor: "#947D85",
     accentColor: "#38BDF8",
     status: "completed",
     description:
@@ -250,7 +250,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 2006,
     coverImage: "https://books.google.com/books/content?id=QxbFBAAAQBAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     coverColor: "#1E2746",
-    spineColor: "#141B2C",
+    spineColor: "#2F5D91",
     accentColor: "#8B5CF6",
     status: "completed",
     description:
@@ -264,7 +264,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 2008,
     coverImage: "https://covers.openlibrary.org/b/id/10526598-L.jpg",
     coverColor: "#0F172A",
-    spineColor: "#111827",
+    spineColor: "#1D171B",
     accentColor: "#22D3EE",
     status: "completed",
     description:
@@ -278,7 +278,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 2014,
     coverImage: "https://covers.openlibrary.org/b/id/8079769-L.jpg",
     coverColor: "#2D1B46",
-    spineColor: "#1F1233",
+    spineColor: "#44393D",
     accentColor: "#F97316",
     status: "completed",
     description:
@@ -292,7 +292,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 2013,
     coverImage: "https://covers.openlibrary.org/b/id/8175193-L.jpg",
     coverColor: "#10243C",
-    spineColor: "#0B1B2C",
+    spineColor: "#504653",
     accentColor: "#4CC9F0",
     status: "completed",
     description:
@@ -306,7 +306,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 2012,
     coverImage: "https://covers.openlibrary.org/b/id/7314238-L.jpg",
     coverColor: "#0F2A49",
-    spineColor: "#103452",
+    spineColor: "#80726A",
     accentColor: "#F59E0B",
     status: "completed",
     description:
@@ -320,7 +320,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 2011,
     coverImage: "https://covers.openlibrary.org/b/id/7314237-L.jpg",
     coverColor: "#111B2B",
-    spineColor: "#1E293B",
+    spineColor: "#557889",
     accentColor: "#38BDF8",
     status: "completed",
     description:
@@ -334,7 +334,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 1965,
     coverImage: "https://covers.openlibrary.org/b/isbn/9780441172719-L.jpg",
     coverColor: "#A16207",
-    spineColor: "#78350F",
+    spineColor: "#FFFFFF",
     accentColor: "#FACC15",
     status: "completed",
     description:
@@ -377,7 +377,7 @@ export const libraryBooks: LibraryBook[] = [
     coverImage:
       "https://books.google.com/books/content?id=-CL-6T5rqHEC&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     coverColor: "#3F3D56",
-    spineColor: "#2E2C44",
+    spineColor: "#15191B",
     accentColor: "#F2CC8F",
     status: "completed",
     description:
@@ -392,7 +392,7 @@ export const libraryBooks: LibraryBook[] = [
     coverImage:
       "https://books.google.com/books/content?id=ufbtAAAAMAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     coverColor: "#264653",
-    spineColor: "#1B3A4B",
+    spineColor: "#AF842B",
     accentColor: "#2A9D8F",
     status: "completed",
     description:
@@ -407,7 +407,7 @@ export const libraryBooks: LibraryBook[] = [
     coverImage:
       "https://books.google.com/books/content?id=TDyDzQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api",
     coverColor: "#0B1F3A",
-    spineColor: "#112C4F",
+    spineColor: "#948F91",
     accentColor: "#F97316",
     status: "completed",
     description:
@@ -450,7 +450,7 @@ export const libraryBooks: LibraryBook[] = [
     coverImage:
       "https://cdn.waterstones.com/bookjackets/large/9781/5290/9781529034547.jpg",
     coverColor: "#0F172A",
-    spineColor: "#1E293B",
+    spineColor: "#04969C",
     accentColor: "#F472B6",
     status: "completed",
     description:
@@ -493,7 +493,7 @@ export const libraryBooks: LibraryBook[] = [
     coverImage:
       "https://books.google.com/books/publisher/content?id=oG9_AwAAQBAJ&printsec=frontcover&img=1&zoom=4&edge=curl&source=gbs_api",
     coverColor: "#2B193D",
-    spineColor: "#1B1027",
+    spineColor: "#434F48",
     accentColor: "#F2A7C6",
     status: "completed",
     description:
@@ -507,7 +507,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 2019,
     coverImage: "https://covers.openlibrary.org/b/isbn/9780374276805-L.jpg",
     coverColor: "#12212F",
-    spineColor: "#0C151F",
+    spineColor: "#686A63",
     accentColor: "#7DD3FC",
     status: "completed",
     description:
@@ -522,7 +522,7 @@ export const libraryBooks: LibraryBook[] = [
     coverImage:
       "https://books.google.com/books/content?id=zGZ-3fHu8N0C&printsec=frontcover&img=1&zoom=4&edge=curl&source=gbs_api",
     coverColor: "#1C1F2E",
-    spineColor: "#141720",
+    spineColor: "#465752",
     accentColor: "#A3E635",
     status: "completed",
     description:
@@ -537,7 +537,7 @@ export const libraryBooks: LibraryBook[] = [
     coverImage:
       "https://books.google.com/books/content?id=R7QSDnqjWRkC&printsec=frontcover&img=1&zoom=4&edge=curl&source=gbs_api",
     coverColor: "#0F172A",
-    spineColor: "#172554",
+    spineColor: "#4F6743",
     accentColor: "#818CF8",
     status: "completed",
     description:
@@ -551,7 +551,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 1776,
     coverImage: "https://covers.openlibrary.org/b/isbn/9780140437645-L.jpg",
     coverColor: "#3E2723",
-    spineColor: "#2C1815",
+    spineColor: "#E2E2CD",
     accentColor: "#D4A373",
     status: "completed",
     description:
@@ -565,7 +565,7 @@ export const libraryBooks: LibraryBook[] = [
     year: 2019,
     coverImage: "https://covers.openlibrary.org/b/id/8746964-L.jpg",
     coverColor: "#1C1C1C",
-    spineColor: "#0F0F0F",
+    spineColor: "#19191D",
     accentColor: "#EF4444",
     status: "completed",
     description:

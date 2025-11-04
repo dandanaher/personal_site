@@ -449,7 +449,16 @@ const HeroBook = ({ book, isMobile = false }: HeroBookProps) => {
   const perspective = isMobile ? 520 : 780;
   const bookWidth = isMobile ? 128 : 192; // w-32 for mobile, w-48 for desktop
   const bookHeight = isMobile ? 192 : 288; // h-48 for mobile, h-72 for desktop
-  const spineThickness = isMobile ? 18 : 26;
+
+  // Calculate spine thickness based on page count
+  // Base thickness for ~300 pages, scale proportionally
+  const baseThickness = isMobile ? 18 : 26;
+  const basePageCount = 300;
+  const thicknessScale = book.pageCount / basePageCount;
+  // Clamp between 0.4x and 2.5x of base thickness for reasonable visual range
+  const clampedScale = Math.max(0.4, Math.min(2.5, thicknessScale));
+  const spineThickness = Math.round(baseThickness * clampedScale);
+
   const pageColor = "#f5f1e6";
 
   return (

@@ -12,6 +12,7 @@ export type LibraryBook = {
   coverScale?: number;
   rating?: number; // 0.5-5 stars (supports half stars)
   review?: string; // Personal review/thoughts
+  pageCount: number; // Number of pages in the book
 };
 
 export const libraryBooks: LibraryBook[] = [
@@ -27,6 +28,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "current",
     description:
       "Classic sci-fi saga kicking off the Foundation series while tracking Hari Seldon's psychohistory in motion.",
+    pageCount: 255,
   },
   {
     id: "red-mars",
@@ -40,6 +42,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "First settlers battle politics, science, and a harsh planet as the Martian terraforming era begins.",
+    pageCount: 572,
   },
   {
     id: "green-mars",
@@ -53,6 +56,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "Decades of transformation ignite radical movements and competing visions for Martian independence.",
+    pageCount: 624,
   },
   {
     id: "blue-mars",
@@ -66,6 +70,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "The first Martian generation confronts longevity, colonization, and autonomy for a reshaped world.",
+    pageCount: 800,
   },
   {
     id: "limitless",
@@ -82,6 +87,7 @@ export const libraryBooks: LibraryBook[] = [
     rating: 4,
     review:
       "Inspiring and humbling. A rarity to get such first-hand insight into spaceflight on a human scale. This book is linked to special memories for me. Not only is it a good read, of course, but my copy is signed by Tim himself! I watched his talk with my Dad while he was promoting the book, and by fluke we ran into him in the chip shop before the event. He's an awesome, down-to-earth guy (pun intended), and he made time for my enthusiasm even though he was likely eager to get into the venue. Recommended if you're a space nerd like myself.",
+    pageCount: 496,
   },
   {
     id: "the-three-body-problem",
@@ -95,6 +101,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "A clandestine first-contact conspiracy born in the Cultural Revolution reshapes humanity's future.",
+    pageCount: 416,
   },
   {
     id: "the-dark-forest",
@@ -108,6 +115,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "Earth scrambles to devise deterrence strategies as the Trisolaran invasion draws ever closer.",
+    pageCount: 528,
   },
   {
     id: "ultima",
@@ -121,6 +129,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "Time-twisted explorers leverage cosmic artifacts to confront universe-spanning intelligences.",
+    pageCount: 560,
   },
   {
     id: "proxima",
@@ -134,6 +143,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "Reluctant colonists endure an alien world and uncover a network of ancient star gates.",
+    pageCount: 464,
   },
   {
     id: "calibans-war",
@@ -147,6 +157,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "A kidnapped child pulls the Rocinante crew into Martian politics and protomolecule warfare.",
+    pageCount: 624,
   },
   {
     id: "leviathan-wakes",
@@ -160,6 +171,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "A noir investigation collides with a system-wide conspiracy surrounding an alien contagion.",
+    pageCount: 592,
   },
   {
     id: "dune",
@@ -173,6 +185,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "Paul Atreides inherits the desert world Arrakis and a destiny bound to spice and prophecy.",
+    pageCount: 604,
   },
   {
     id: "dune-messiah",
@@ -186,6 +199,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "Paul's empire faces political manipulation and religious extremism in the wake of his jihad.",
+    pageCount: 336,
   },
   {
     id: "children-of-dune",
@@ -199,6 +213,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "The next Atreides generation wrestles with prescience, revolution, and the future of Arrakis.",
+    pageCount: 624,
   },
   {
     id: "the-iliad",
@@ -213,6 +228,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "An epic poem of the Trojan War exploring rage, honor, and the whims of the gods.",
+    pageCount: 704,
   },
   {
     id: "the-odyssey",
@@ -227,6 +243,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "Odysseus battles monsters and temptation during a perilous voyage home from Troy.",
+    pageCount: 560,
   },
   {
     id: "liftoff",
@@ -241,6 +258,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "Eric Berger chronicles SpaceX's scrappy beginnings, near-failures, and eventual launch successes.",
+    pageCount: 288,
   },
   {
     id: "the-hitchhikers-guide-to-the-galaxy",
@@ -254,6 +272,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "Absurdist tour of the galaxy with Arthur Dent, Ford Prefect, and a manic towel.",
+    pageCount: 224,
   },
   {
     id: "the-restaurant-at-the-end-of-the-universe",
@@ -267,6 +286,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "Arthur and friends witness the universe's finale while chasing questions about fate.",
+    pageCount: 240,
   },
   {
     id: "life-the-universe-and-everything",
@@ -281,6 +301,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "A cricket-obsessed conspiracy threatens reality as the Hitchhiker crew muddles through.",
+    pageCount: 240,
   },
   {
     id: "brave-new-world",
@@ -294,6 +315,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "Biotech caste systems and engineered happiness reveal a chilling vision of social control.",
+    pageCount: 288,
   },
   {
     id: "nineteen-eighty-four",
@@ -307,6 +329,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "Totalitarian surveillance erodes truth and identity in Orwell's dystopian classic.",
+    pageCount: 336,
   },
   {
     id: "the-book-of-strange-new-things",
@@ -321,6 +344,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "A missionary wrestles with faith and distance while preaching to an alien congregation.",
+    pageCount: 592,
   },
   {
     id: "dead-astronauts",
@@ -334,6 +358,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "Fragmented eco-fiction follows three rebels across timelines against a biotech leviathan.",
+    pageCount: 336,
   },
   {
     id: "rendezvous-with-rama",
@@ -348,6 +373,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "Explorers investigate a silent cylindrical starship passing through the solar system.",
+    pageCount: 256,
   },
   {
     id: "the-city-and-the-stars",
@@ -362,6 +388,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "A lone dreamer leaves humanity's last city to rediscover forgotten stars.",
+    pageCount: 256,
   },
   {
     id: "the-decline-and-fall-of-the-roman-empire",
@@ -375,6 +402,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "Edward Gibbon traces Rome's centuries-long transformation and collapse with sweeping detail.",
+    pageCount: 848,
   },
   {
     id: "berserk-deluxe-vol-1",
@@ -388,6 +416,7 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "Guts' mercenary past unfolds in brutal dark fantasy with Miura's iconic art.",
+    pageCount: 696,
   },
   {
     id: "berserk-deluxe-vol-2",
@@ -402,5 +431,6 @@ export const libraryBooks: LibraryBook[] = [
     status: "completed",
     description:
       "The Band of the Hawk charges toward glory as betrayals sharpen in Midland.",
+    pageCount: 704,
   },
 ];

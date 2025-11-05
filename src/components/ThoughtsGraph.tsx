@@ -33,6 +33,7 @@ export const ThoughtsGraph = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
   const nodesRef = useRef<d3.Selection<SVGGElement, GraphNode, SVGGElement, unknown> | null>(null);
+  const labelsRef = useRef<d3.Selection<SVGTextElement, GraphNode, SVGGElement, unknown> | null>(null);
 
   // Update dimensions on resize
   useEffect(() => {
@@ -61,20 +62,44 @@ export const ThoughtsGraph = ({
           .transition()
           .duration(300)
           .attr("r", 14)
-          .attr("fill", "rgba(157, 205, 180, 0.35)")
-          .attr("stroke", "rgba(157, 205, 180, 0.9)")
-          .attr("stroke-width", 2);
+          .attr("fill", "rgba(157, 205, 180, 0.25)")
+          .attr("stroke", "rgba(157, 205, 180, 0.5)")
+          .attr("stroke-width", 1);
       } else {
         circle
           .transition()
           .duration(300)
           .attr("r", 12)
           .attr("fill", "rgba(157, 205, 180, 0.15)")
-          .attr("stroke", "rgba(157, 205, 180, 0.5)")
-          .attr("stroke-width", 1.5);
+          .attr("stroke", "rgba(157, 205, 180, 0.3)")
+          .attr("stroke-width", 1);
       }
     });
   }, [highlightedId]);
+
+  // Watch for theme changes and update label colors without re-rendering
+  useEffect(() => {
+    const updateLabelColors = () => {
+      if (!labelsRef.current) return;
+      // Check if dark mode is active by looking at data-theme attribute
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      // Use the exact same colors as --color-text-primary
+      const textColor = isDark ? '#e8eef5' : '#3c3d3b';
+      labelsRef.current.style("fill", textColor);
+    };
+
+    // Update immediately
+    updateLabelColors();
+
+    // Create observer to watch for attribute changes on html element (theme changes)
+    const observer = new MutationObserver(updateLabelColors);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     if (!svgRef.current || thoughts.length === 0) return;
@@ -109,7 +134,7 @@ export const ThoughtsGraph = ({
       }
     }
 
-    // Create force simulation
+    // Create force simulation with gentler forces
     const simulation = d3
       .forceSimulation(nodes)
       .force(
@@ -118,11 +143,13 @@ export const ThoughtsGraph = ({
           .forceLink(links)
           .id((d: any) => d.id)
           .distance(80)
-          .strength((d: any) => d.sharedTags * 0.3)
+          .strength(0.3)
       )
-      .force("charge", d3.forceManyBody().strength(-150))
-      .force("center", d3.forceCenter(width / 2, height / 2))
-      .force("collision", d3.forceCollide().radius(25));
+      .force("charge", d3.forceManyBody().strength(-100).distanceMax(200))
+      .force("center", d3.forceCenter(width / 2, height / 2).strength(0.05))
+      .force("collision", d3.forceCollide().radius(20).strength(0.7))
+      .alphaDecay(0.02)
+      .velocityDecay(0.4);
 
     // Create container group
     const g = svg.append("g");
@@ -144,18 +171,20 @@ export const ThoughtsGraph = ({
       d3.zoomIdentity.translate(width / 2, height / 2).scale(initialScale).translate(-width / 2, -height / 2)
     );
 
-    // Draw links
+    // Draw links FIRST (so they appear below nodes)
     const link = g
       .append("g")
+      .attr("class", "links-layer")
       .selectAll("line")
       .data(links)
       .join("line")
-      .attr("stroke", "rgba(157, 205, 180, 0.2)")
-      .attr("stroke-width", (d) => Math.min(d.sharedTags * 0.5, 2));
+      .attr("stroke", "rgba(157, 205, 180, 0.15)")
+      .attr("stroke-width", (d) => Math.min(d.sharedTags * 0.8, 1.5));
 
-    // Draw nodes
+    // Draw nodes AFTER links (so they appear above)
     const node = g
       .append("g")
+      .attr("class", "nodes-layer")
       .selectAll("g")
       .data(nodes)
       .join("g")
@@ -173,48 +202,47 @@ export const ThoughtsGraph = ({
         .on("end", dragended) as any
     );
 
-    // Glass-material circles for nodes
+    // Glass-material circles for nodes - matching back button and theme toggle
     node
       .append("circle")
       .attr("r", 12)
       .attr("fill", "rgba(157, 205, 180, 0.15)")
-      .attr("stroke", "rgba(157, 205, 180, 0.5)")
-      .attr("stroke-width", 1.5)
-      .attr("filter", "url(#glass-filter)");
+      .attr("stroke", "rgba(157, 205, 180, 0.3)")
+      .attr("stroke-width", 1)
+      .attr("filter", "url(#glass-shadow)");
 
-    // Inner glow circle
-    node
-      .append("circle")
-      .attr("r", 8)
-      .attr("fill", "none")
-      .attr("stroke", "rgba(255, 255, 255, 0.3)")
-      .attr("stroke-width", 0.5);
+    // Add subtle node labels on hover - positioned above nodes
+    // Set color based on current theme - matching --color-text-primary exactly
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const textColor = isDark ? '#e8eef5' : '#3c3d3b';
 
-    // Add subtle node labels on hover
     const labels = g
       .append("g")
       .selectAll("text")
       .data(nodes)
       .join("text")
       .attr("text-anchor", "middle")
-      .attr("dy", 25)
+      .attr("dy", -20)
       .attr("font-size", "10px")
-      .attr("fill", "var(--color-secondary)")
+      .style("fill", textColor)
       .attr("opacity", 0)
       .attr("pointer-events", "none")
       .text((d) => d.title);
 
-    // Hover effects
+    // Store labels reference for theme updates
+    labelsRef.current = labels;
+
+    // Hover effects - matching button hover behavior
     node
       .on("mouseenter", function (_event, d) {
         const circle = d3.select(this).select("circle");
         circle
           .transition()
           .duration(200)
-          .attr("r", 16)
-          .attr("fill", "rgba(157, 205, 180, 0.4)")
-          .attr("stroke", "rgba(157, 205, 180, 0.95)")
-          .attr("stroke-width", 2.5);
+          .attr("r", 15)
+          .attr("fill", "rgba(157, 205, 180, 0.25)")
+          .attr("stroke", "rgba(157, 205, 180, 0.5)")
+          .attr("stroke-width", 1);
 
         labels
           .filter((label) => label.id === d.id)
@@ -232,9 +260,9 @@ export const ThoughtsGraph = ({
           .transition()
           .duration(200)
           .attr("r", isHighlighted ? 14 : 12)
-          .attr("fill", isHighlighted ? "rgba(157, 205, 180, 0.35)" : "rgba(157, 205, 180, 0.15)")
-          .attr("stroke", isHighlighted ? "rgba(157, 205, 180, 0.9)" : "rgba(157, 205, 180, 0.5)")
-          .attr("stroke-width", isHighlighted ? 2 : 1.5);
+          .attr("fill", isHighlighted ? "rgba(157, 205, 180, 0.25)" : "rgba(157, 205, 180, 0.15)")
+          .attr("stroke", isHighlighted ? "rgba(157, 205, 180, 0.5)" : "rgba(157, 205, 180, 0.3)")
+          .attr("stroke-width", 1);
 
         labels
           .filter((label) => label.id === d.id)
@@ -261,9 +289,11 @@ export const ThoughtsGraph = ({
       labels.attr("x", (d) => d.x!).attr("y", (d) => d.y!);
     });
 
-    // Drag functions
+    // Drag functions - restart simulation gently to allow dragging without affecting unconnected nodes
     function dragstarted(event: any, d: GraphNode) {
-      if (!event.active) simulation.alphaTarget(0.3).restart();
+      // Restart simulation with very low alpha to enable dragging
+      // This allows the dragged node to move without causing large movements in other nodes
+      if (!event.active) simulation.alpha(0.01).restart();
       d.fx = d.x;
       d.fy = d.y;
     }
@@ -271,18 +301,26 @@ export const ThoughtsGraph = ({
     function dragged(event: any, d: GraphNode) {
       d.fx = event.x;
       d.fy = event.y;
+      // Manually nudge the simulation to update positions
+      simulation.alpha(Math.max(simulation.alpha(), 0.01));
     }
 
     function dragended(event: any, d: GraphNode) {
-      if (!event.active) simulation.alphaTarget(0);
+      // Release the node position constraint so it can settle naturally
       d.fx = null;
       d.fy = null;
+      // Let the simulation continue briefly to allow the node to settle
+      if (!event.active) {
+        simulation.alphaTarget(0);
+        simulation.alpha(0.05); // Small amount of energy to allow settling
+      }
     }
 
-    // Add glass filter definition
+    // Add glass shadow filter definition - matching button shadow
     const defs = svg.append("defs");
-    const filter = defs.append("filter").attr("id", "glass-filter");
+    const filter = defs.append("filter").attr("id", "glass-shadow");
 
+    // Outer shadow
     filter
       .append("feGaussianBlur")
       .attr("in", "SourceAlpha")
@@ -291,17 +329,21 @@ export const ThoughtsGraph = ({
     filter
       .append("feOffset")
       .attr("dx", 0)
-      .attr("dy", 1)
+      .attr("dy", 2)
       .attr("result", "offsetblur");
 
     filter
-      .append("feComponentTransfer")
-      .append("feFuncA")
-      .attr("type", "linear")
-      .attr("slope", 0.3);
+      .append("feFlood")
+      .attr("flood-color", "rgba(157, 205, 180, 0.2)");
+
+    filter
+      .append("feComposite")
+      .attr("in2", "offsetblur")
+      .attr("operator", "in")
+      .attr("result", "shadow");
 
     const feMerge = filter.append("feMerge");
-    feMerge.append("feMergeNode");
+    feMerge.append("feMergeNode").attr("in", "shadow");
     feMerge.append("feMergeNode").attr("in", "SourceGraphic");
 
     // Cleanup

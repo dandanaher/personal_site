@@ -49,6 +49,14 @@ export const Thoughts = () => {
 
   return (
     <div className="relative h-screen pt-6 px-6 md:pt-16 md:px-16 text-primary overflow-hidden">
+      {/* Top fade overlay - extends across entire screen width */}
+      <div
+        className="fixed top-0 left-0 right-0 h-48 pointer-events-none z-40 transition-all duration-300"
+        style={{
+          background: 'linear-gradient(to bottom, var(--color-bg) 0%, var(--color-bg) 40%, color-mix(in srgb, var(--color-bg) 90%, transparent) 60%, color-mix(in srgb, var(--color-bg) 60%, transparent) 80%, transparent 100%)'
+        }}
+      />
+
       {/* Two-column layout on larger screens */}
       <div className="absolute inset-0 px-6 md:px-16 flex overflow-visible">
         {/* Blog Posts - left side */}
@@ -59,13 +67,6 @@ export const Thoughts = () => {
             msOverflowStyle: 'none',
           }}
         >
-          {/* Top fade overlay - uses CSS variable for theme-aware gradient */}
-          <div
-            className="sticky top-0 left-0 right-0 h-48 pointer-events-none z-30 transition-all duration-300 -mb-48"
-            style={{
-              background: 'linear-gradient(to bottom, var(--color-bg) 0%, var(--color-bg) 40%, color-mix(in srgb, var(--color-bg) 90%, transparent) 60%, color-mix(in srgb, var(--color-bg) 60%, transparent) 80%, transparent 100%)'
-            }}
-          />
           <div className="space-y-6 pt-56 md:pt-52">
             {thoughtEntries.length > 0 ? (
               thoughtEntries.map((thought) => (
@@ -100,7 +101,7 @@ export const Thoughts = () => {
       </div>
 
       {/* Page Title - floats on top */}
-      <div className="relative pt-16 md:-mt-8 md:pt-0 pb-8 md:pb-12 md:pl-8 z-40 pointer-events-none">
+      <div className="relative pt-16 md:-mt-8 md:pt-0 pb-8 md:pb-12 md:pl-8 z-50 pointer-events-none">
         <h1 className="mb-1 font-serif text-5xl tracking-tight text-primary">
           Thoughts
         </h1>

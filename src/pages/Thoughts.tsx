@@ -47,6 +47,11 @@ export const Thoughts = () => {
     });
   };
 
+  // Sort thoughts by date, newest first
+  const sortedThoughts = [...thoughtEntries].sort((a, b) =>
+    new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+
   return (
     <div className="relative h-screen pt-6 px-6 md:pt-16 md:px-16 text-primary overflow-hidden">
       {/* Top fade overlay - extends across entire screen width */}
@@ -63,8 +68,8 @@ export const Thoughts = () => {
           }}
         >
           <div className="space-y-6 pt-56 md:pt-52">
-            {thoughtEntries.length > 0 ? (
-              thoughtEntries.map((thought) => (
+            {sortedThoughts.length > 0 ? (
+              sortedThoughts.map((thought) => (
                 <ThoughtCard
                   key={thought.id}
                   thought={thought}
@@ -87,7 +92,7 @@ export const Thoughts = () => {
         <div className="hidden lg:block lg:w-1/2 xl:w-3/5 h-full pl-8 overflow-visible">
           <div className="h-full w-full pt-52 overflow-visible">
             <ThoughtsGraph
-              thoughts={thoughtEntries}
+              thoughts={sortedThoughts}
               onNodeClick={handleNodeClick}
               highlightedId={expandedId}
             />

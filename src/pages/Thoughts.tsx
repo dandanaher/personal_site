@@ -109,7 +109,7 @@ export const Thoughts = () => {
           Thoughts
         </h1>
         <p className="font-serif text-sm text-secondary">
-          reflections on spaceflight, engineering, and technology
+          sometimes substantive, sometimes not so much. all of it captured in the knowledge graph on the right
         </p>
       </div>
     </div>

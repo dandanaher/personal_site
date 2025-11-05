@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { ThoughtEntry } from "../data/thoughts";
 import { thoughtEntries } from "../data/thoughts";
+import { ThoughtsGraph } from "../components/ThoughtsGraph";
 
 export const Thoughts = () => {
   const [expandedId, setExpandedId] = useState<string | null>(null);
@@ -9,6 +10,22 @@ export const Thoughts = () => {
   const handleToggle = (id: string) => {
     setExpandedId(expandedId === id ? null : id);
   };
+
+  const handleNodeClick = useCallback((thoughtId: string) => {
+    setExpandedId(thoughtId);
+    // Scroll to the thought card, positioning it just below the fade gradient
+    const element = document.getElementById(`thought-${thoughtId}`);
+    const scrollContainer = element?.closest('.overflow-y-auto');
+    if (element && scrollContainer) {
+      const elementTop = element.offsetTop;
+      const fadeGradientHeight = 192; // h-48 = 12rem = 192px
+      const scrollPosition = elementTop - fadeGradientHeight - 20; // 20px additional offset
+      scrollContainer.scrollTo({
+        top: scrollPosition,
+        behavior: "smooth"
+      });
+    }
+  }, []); // Empty dependency array - function never changes
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -20,11 +37,12 @@ export const Thoughts = () => {
   };
 
   return (
-    <div className="relative h-screen overflow-hidden pt-6 px-6 md:pt-16 md:px-16 text-primary">
-      {/* Blog Posts - extends behind title */}
-      <div className="absolute inset-0 px-6 md:px-16">
+    <div className="relative h-screen pt-6 px-6 md:pt-16 md:px-16 text-primary overflow-hidden">
+      {/* Two-column layout on larger screens */}
+      <div className="absolute inset-0 px-6 md:px-16 flex overflow-visible">
+        {/* Blog Posts - left side */}
         <div
-          className="relative h-full overflow-y-auto scrollbar-hide md:pl-8 max-w-2xl"
+          className="relative h-full overflow-y-auto scrollbar-hide md:pl-8 w-full lg:w-1/2 xl:w-2/5"
           style={{
             scrollbarWidth: 'none',
             msOverflowStyle: 'none',
@@ -57,6 +75,17 @@ export const Thoughts = () => {
             )}
           </div>
         </div>
+
+        {/* Graph visualization - right side, hidden on mobile */}
+        <div className="hidden lg:block lg:w-1/2 xl:w-3/5 h-full pl-8 overflow-visible">
+          <div className="h-full w-full pt-52 overflow-visible">
+            <ThoughtsGraph
+              thoughts={thoughtEntries}
+              onNodeClick={handleNodeClick}
+              highlightedId={expandedId}
+            />
+          </div>
+        </div>
       </div>
 
       {/* Page Title - floats on top */}
@@ -86,7 +115,7 @@ const ThoughtCard = ({
   formatDate,
 }: ThoughtCardProps) => {
   return (
-    <article className="group">
+    <article id={`thought-${thought.id}`} className="group">
       <button
         onClick={onToggle}
         className={`relative w-full text-left rounded-xl border p-6 backdrop-blur-lg transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/50 ${

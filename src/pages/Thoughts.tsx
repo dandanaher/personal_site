@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { ThoughtEntry } from "../data/thoughts";
 import { thoughtEntries } from "../data/thoughts";
@@ -47,9 +47,12 @@ export const Thoughts = () => {
     });
   };
 
-  // Sort thoughts by date, newest first
-  const sortedThoughts = [...thoughtEntries].sort((a, b) =>
-    new Date(b.date).getTime() - new Date(a.date).getTime()
+  // Sort thoughts by date, newest first (memoized to prevent graph re-renders)
+  const sortedThoughts = useMemo(() =>
+    [...thoughtEntries].sort((a, b) =>
+      new Date(b.date).getTime() - new Date(a.date).getTime()
+    ),
+    [thoughtEntries]
   );
 
   return (

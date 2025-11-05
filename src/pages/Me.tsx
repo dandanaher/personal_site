@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect, useLayoutEffect } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
 import { LondonWidget } from '../components/LondonWidget';
 
 // --- Physics Types ---
@@ -19,7 +18,6 @@ interface VelocityPoint {
 }
 
 export const Me = () => {
-  const [showCopied, setShowCopied] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const [fadeInOriginal, setFadeInOriginal] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -66,16 +64,6 @@ export const Me = () => {
   const MIN_COLLISION_INTERVAL = 50;
   const ROLLING_THRESHOLD = 2;
   const SNAP_DISTANCE = 80;
-
-  const handleCopyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText('dandanaher.dev@gmail.com');
-      setShowCopied(true);
-      setTimeout(() => setShowCopied(false), 2000);
-    } catch (err) {
-      console.error('Failed to copy email:', err);
-    }
-  };
 
   const playBubblePopSound = () => {
     try {
@@ -790,32 +778,6 @@ export const Me = () => {
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
               </svg>
             </a>
-            <div className="relative">
-              <button
-                onClick={handleCopyEmail}
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-secondary bg-transparent text-primary hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-background"
-                style={{ transition: 'transform 0.2s ease' }}
-                aria-label="Copy email address"
-              >
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
-                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                </svg>
-              </button>
-              <AnimatePresence>
-                {showCopied && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -5 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-0 left-[calc(100%+0.5rem)] z-[1000] whitespace-nowrap rounded-md bg-primary px-4 py-2 text-sm text-background shadow-lg
-                               before:absolute before:top-1/2 before:right-full before:-translate-y-1/2 before:border-4 before:border-transparent before:border-r-primary"
-                  >
-                    Email copied!
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
           </div>
         </div>
       </div>

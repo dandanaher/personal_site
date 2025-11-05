@@ -6,6 +6,7 @@ type GraphNode = d3.SimulationNodeDatum & {
   id: string;
   title: string;
   tags: string[];
+  radius: number;
   x?: number;
   y?: number;
   fx?: number | null;
@@ -23,6 +24,21 @@ interface ThoughtsGraphProps {
   onNodeClick?: (thoughtId: string) => void;
   highlightedId?: string | null;
 }
+
+// Calculate node radius based on content length
+const calculateNodeRadius = (contentLength: number): number => {
+  const MIN_RADIUS = 8;
+  const MAX_RADIUS = 20;
+  const MIN_CONTENT_LENGTH = 100;
+  const MAX_CONTENT_LENGTH = 3000;
+
+  // Clamp content length to our range
+  const clampedLength = Math.max(MIN_CONTENT_LENGTH, Math.min(MAX_CONTENT_LENGTH, contentLength));
+
+  // Linear interpolation between min and max radius
+  const normalizedLength = (clampedLength - MIN_CONTENT_LENGTH) / (MAX_CONTENT_LENGTH - MIN_CONTENT_LENGTH);
+  return MIN_RADIUS + (MAX_RADIUS - MIN_RADIUS) * normalizedLength;
+};
 
 export const ThoughtsGraph = ({
   thoughts,
@@ -61,7 +77,7 @@ export const ThoughtsGraph = ({
         circle
           .transition()
           .duration(300)
-          .attr("r", 14)
+          .attr("r", d.radius * 1.15)
           .attr("fill", "rgba(157, 205, 180, 0.25)")
           .attr("stroke", "rgba(157, 205, 180, 0.5)")
           .attr("stroke-width", 1);
@@ -69,7 +85,7 @@ export const ThoughtsGraph = ({
         circle
           .transition()
           .duration(300)
-          .attr("r", 12)
+          .attr("r", d.radius)
           .attr("fill", "rgba(157, 205, 180, 0.15)")
           .attr("stroke", "rgba(157, 205, 180, 0.3)")
           .attr("stroke-width", 1);
@@ -110,11 +126,12 @@ export const ThoughtsGraph = ({
     // Clear previous content
     svg.selectAll("*").remove();
 
-    // Create nodes from thoughts
+    // Create nodes from thoughts with calculated radii based on content length
     const nodes: GraphNode[] = thoughts.map((thought) => ({
       id: thought.id,
       title: thought.title,
       tags: thought.tags || [],
+      radius: calculateNodeRadius(thought.content.length),
     }));
 
     // Create links between nodes with shared tags
@@ -147,7 +164,7 @@ export const ThoughtsGraph = ({
       )
       .force("charge", d3.forceManyBody().strength(-100).distanceMax(200))
       .force("center", d3.forceCenter(width / 2, height / 2).strength(0.05))
-      .force("collision", d3.forceCollide().radius(20).strength(0.7))
+      .force("collision", d3.forceCollide().radius((d: any) => d.radius + 5).strength(0.7))
       .alphaDecay(0.02)
       .velocityDecay(0.4);
 
@@ -205,7 +222,7 @@ export const ThoughtsGraph = ({
     // Glass-material circles for nodes - matching back button and theme toggle
     node
       .append("circle")
-      .attr("r", 12)
+      .attr("r", (d) => d.radius)
       .attr("fill", "rgba(157, 205, 180, 0.15)")
       .attr("stroke", "rgba(157, 205, 180, 0.3)")
       .attr("stroke-width", 1)
@@ -222,7 +239,7 @@ export const ThoughtsGraph = ({
       .data(nodes)
       .join("text")
       .attr("text-anchor", "middle")
-      .attr("dy", -20)
+      .attr("dy", (d) => -(d.radius + 8))
       .attr("font-size", "10px")
       .style("fill", textColor)
       .attr("opacity", 0)
@@ -239,7 +256,7 @@ export const ThoughtsGraph = ({
         circle
           .transition()
           .duration(200)
-          .attr("r", 15)
+          .attr("r", d.radius * 1.25)
           .attr("fill", "rgba(157, 205, 180, 0.25)")
           .attr("stroke", "rgba(157, 205, 180, 0.5)")
           .attr("stroke-width", 1);
@@ -259,7 +276,7 @@ export const ThoughtsGraph = ({
         circle
           .transition()
           .duration(200)
-          .attr("r", isHighlighted ? 14 : 12)
+          .attr("r", isHighlighted ? d.radius * 1.15 : d.radius)
           .attr("fill", isHighlighted ? "rgba(157, 205, 180, 0.25)" : "rgba(157, 205, 180, 0.15)")
           .attr("stroke", isHighlighted ? "rgba(157, 205, 180, 0.5)" : "rgba(157, 205, 180, 0.3)")
           .attr("stroke-width", 1);

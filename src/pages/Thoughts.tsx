@@ -50,12 +50,7 @@ export const Thoughts = () => {
   return (
     <div className="relative h-screen pt-6 px-6 md:pt-16 md:px-16 text-primary overflow-hidden">
       {/* Top fade overlay - extends across entire screen width */}
-      <div
-        className="fixed top-0 left-0 right-0 h-48 pointer-events-none z-40 transition-all duration-300"
-        style={{
-          background: 'linear-gradient(to bottom, var(--color-bg) 0%, var(--color-bg) 40%, color-mix(in srgb, var(--color-bg) 90%, transparent) 60%, color-mix(in srgb, var(--color-bg) 60%, transparent) 80%, transparent 100%)'
-        }}
-      />
+      <div className="fixed top-0 left-0 right-0 h-48 pointer-events-none z-40 fade-overlay transition-colors duration-300" />
 
       {/* Two-column layout on larger screens */}
       <div className="absolute inset-0 px-6 md:px-16 flex overflow-visible">

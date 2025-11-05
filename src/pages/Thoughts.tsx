@@ -7,25 +7,36 @@ import { ThoughtsGraph } from "../components/ThoughtsGraph";
 export const Thoughts = () => {
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
+  const scrollToThought = useCallback((thoughtId: string) => {
+    const element = document.getElementById(`thought-${thoughtId}`);
+    const scrollContainer = element?.closest('.overflow-y-auto');
+    if (element && scrollContainer) {
+      // Hardcoded scroll position to match first card's natural position
+      // The content has pt-52 (208px) on desktop, so we subtract that to align
+      // any card at the same position as the first card appears on page load
+      const targetScrollPosition = element.offsetTop - 208;
+      scrollContainer.scrollTo({
+        top: targetScrollPosition,
+        behavior: "smooth"
+      });
+    }
+  }, []);
+
   const handleToggle = (id: string) => {
-    setExpandedId(expandedId === id ? null : id);
+    const newExpandedId = expandedId === id ? null : id;
+    setExpandedId(newExpandedId);
+    // Scroll to the thought when expanding (but not when collapsing)
+    // Wait for the 300ms expansion animation to complete
+    if (newExpandedId) {
+      setTimeout(() => scrollToThought(id), 350);
+    }
   };
 
   const handleNodeClick = useCallback((thoughtId: string) => {
     setExpandedId(thoughtId);
-    // Scroll to the thought card, positioning it just below the fade gradient
-    const element = document.getElementById(`thought-${thoughtId}`);
-    const scrollContainer = element?.closest('.overflow-y-auto');
-    if (element && scrollContainer) {
-      const elementTop = element.offsetTop;
-      const fadeGradientHeight = 192; // h-48 = 12rem = 192px
-      const scrollPosition = elementTop - fadeGradientHeight - 20; // 20px additional offset
-      scrollContainer.scrollTo({
-        top: scrollPosition,
-        behavior: "smooth"
-      });
-    }
-  }, []); // Empty dependency array - function never changes
+    // Wait for the 300ms expansion animation to complete before scrolling
+    setTimeout(() => scrollToThought(thoughtId), 350);
+  }, [scrollToThought]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);

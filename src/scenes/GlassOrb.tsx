@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { MeshTransmissionMaterial } from '@react-three/drei';
 import * as THREE from 'three';
@@ -16,6 +16,18 @@ interface GlassOrbProps {
 export const GlassOrb = ({ position, iconPath, angle, onClick, id }: GlassOrbProps) => {
   const meshRef = useRef<THREE.Mesh>(null);
   const [hovered, setHovered] = useState(false);
+
+  // Detect mobile devices and adjust quality settings
+  const isMobile = useMemo(() => {
+    return window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  }, []);
+
+  // Quality settings based on device
+  const quality = useMemo(() => ({
+    samples: isMobile ? 16 : 64,
+    resolution: isMobile ? 512 : 2048,
+    sphereSegments: isMobile ? 32 : 64,
+  }), [isMobile]);
 
   // Animate subtle floating motion
   useFrame((state) => {
@@ -40,7 +52,7 @@ export const GlassOrb = ({ position, iconPath, angle, onClick, id }: GlassOrbPro
         renderOrder={0}
         name={`orb-${id}`}
       >
-        <sphereGeometry args={[1, 64, 64]} />
+        <sphereGeometry args={[1, quality.sphereSegments, quality.sphereSegments]} />
         <MeshTransmissionMaterial
           // Glass transmission for depth with environment
           transmission={0.95}
@@ -53,9 +65,9 @@ export const GlassOrb = ({ position, iconPath, angle, onClick, id }: GlassOrbPro
           // Subtle glow on hover
           emissive={'#87A795'}
           emissiveIntensity={hovered ? 0.7 : 0.25}
-          // High quality rendering - increased samples and resolution for crisp glass
-          samples={64}
-          resolution={2048}
+          // Responsive quality settings - lower on mobile for better performance
+          samples={quality.samples}
+          resolution={quality.resolution}
           // Enable transparency for proper rendering
           transparent={true}
           toneMapped={false}

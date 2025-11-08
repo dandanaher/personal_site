@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { AnimatePresence } from 'framer-motion';
 import { LandingScene } from './scenes/LandingScene';
@@ -12,6 +12,42 @@ type Section = 'landing' | 'me' | 'library' | 'projects' | 'thoughts';
 
 function App() {
   const [currentSection, setCurrentSection] = useState<Section>('landing');
+  const [cameraSettings, setCameraSettings] = useState({
+    position: [0, 2, 10] as [number, number, number],
+    fov: 50
+  });
+
+  // Adjust camera for mobile/portrait screens
+  useEffect(() => {
+    const updateCamera = () => {
+      const isPortrait = window.innerHeight > window.innerWidth;
+      const isMobile = window.innerWidth <= 768;
+
+      if (isPortrait && isMobile) {
+        // Zoom out more on portrait mobile to fit all orbs
+        setCameraSettings({
+          position: [0, 2, 14],
+          fov: 60
+        });
+      } else if (isMobile) {
+        // Moderate zoom for landscape mobile
+        setCameraSettings({
+          position: [0, 2, 12],
+          fov: 55
+        });
+      } else {
+        // Default for desktop
+        setCameraSettings({
+          position: [0, 2, 10],
+          fov: 50
+        });
+      }
+    };
+
+    updateCamera();
+    window.addEventListener('resize', updateCamera);
+    return () => window.removeEventListener('resize', updateCamera);
+  }, []);
 
   const handleNavigate = (section: string) => {
     setCurrentSection(section as Section);
@@ -43,13 +79,13 @@ function App() {
       {/* 3D Canvas - always rendered, hidden when viewing pages */}
       <div className={`relative w-full h-full transition-opacity duration-500 ease-in-out ${currentSection !== 'landing' ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
         <Canvas
-          camera={{ position: [0, 2, 10], fov: 50 }}
+          camera={{ position: cameraSettings.position, fov: cameraSettings.fov }}
           gl={{
             alpha: true,
             antialias: true,
             powerPreference: 'high-performance'
           }}
-          dpr={[1, 2]}
+          dpr={window.innerWidth <= 768 ? [1, 1.5] : [1, 2]}
         >
           <LandingScene onNavigate={handleNavigate} />
         </Canvas>

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
 import type { ThoughtEntry } from "../data/thoughts";
+import type { BaseType } from "d3";
 
 type GraphNode = d3.SimulationNodeDatum & {
   id: string;
@@ -48,8 +49,8 @@ export const ThoughtsGraph = ({
   const svgRef = useRef<SVGSVGElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [dimensions, setDimensions] = useState({ width: 800, height: 600 });
-  const nodesRef = useRef<d3.Selection<SVGGElement, GraphNode, SVGGElement, unknown> | null>(null);
-  const labelsRef = useRef<d3.Selection<SVGTextElement, GraphNode, SVGGElement, unknown> | null>(null);
+  const nodesRef = useRef<d3.Selection<SVGGElement | BaseType, GraphNode, SVGGElement, unknown> | null>(null);
+  const labelsRef = useRef<d3.Selection<SVGTextElement | BaseType, GraphNode, SVGGElement, unknown> | null>(null);
 
   // Update dimensions on resize
   useEffect(() => {

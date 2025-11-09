@@ -104,7 +104,7 @@ export const Thoughts = () => {
       </div>
 
       {/* Page Title - floats on top */}
-      <div className="relative flex items-center justify-center md:justify-start px-16 md:px-0 pt-6 md:-mt-8 md:pt-0 pb-8 md:pb-12 md:pl-8 z-50 pointer-events-none">
+      <div className="relative flex items-center justify-center md:justify-start px-16 md:px-0 pt-3 md:-mt-8 md:pt-0 pb-8 md:pb-12 md:pl-8 z-50 pointer-events-none">
         <div className="text-center md:text-left">
           <h1 className="mb-1 font-serif text-2xl md:text-5xl tracking-tight text-primary">
             Thoughts

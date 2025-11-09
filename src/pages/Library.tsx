@@ -45,7 +45,7 @@ export const Library = () => {
   return (
     // Replaced V1 layout wrapper with V2's page padding and text colors
     <div
-      className="flex min-h-screen flex-col p-6 pb-16 md:p-16 text-primary"
+      className="flex min-h-screen md:h-screen flex-col md:overflow-hidden p-6 pb-16 md:p-16 text-primary"
     >
       {/* Page Title */}
       <div className="pt-16 md:-mt-8 md:pt-0 pb-8 md:pb-12 md:pl-8">
@@ -211,18 +211,18 @@ export const Library = () => {
           <div className="flex flex-col gap-6 md:hidden">
             {/* Currently Reading - Mobile */}
             {currentBooks.length > 0 && (
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-3">
                 {/* V2 'text-secondary' */}
                 <span className="text-xs uppercase tracking-[0.45em] text-secondary">
                   Reading
                 </span>
                 <div className="relative -mx-6 px-6">
                   <div className="overflow-x-auto pb-4 scrollbar-hide">
-                    <div className="flex gap-3">
+                    <div className="grid grid-flow-col auto-cols-[calc(25%-9px)] gap-3">
                       {currentBooks.map((book) => {
                         const isSelected = selectedBook?.id === book.id;
                         return (
-                          <div key={book.id} className="w-32 flex-shrink-0">
+                          <div key={book.id} className="flex-shrink-0">
                             <button
                               type="button"
                               onClick={() => handleBookSelect(book.id)}
@@ -280,7 +280,7 @@ export const Library = () => {
               </div>
             )}
 
-            {/* Previously Read - Mobile: 3-4 columns, scrollable to screen edge */}
+            {/* Previously Read - Mobile: 4 columns, scrollable to screen edge */}
             <div className="flex flex-col gap-3">
               {/* V2 'text-secondary' */}
               <span className="text-xs uppercase tracking-[0.45em] text-secondary">
@@ -289,7 +289,7 @@ export const Library = () => {
               <div className="relative -mx-6 px-6">
                 <div className="overflow-x-auto pb-4 scrollbar-hide">
                   {completedBooks.length > 0 ? (
-                    <div className="grid grid-cols-3 sm:grid-cols-4 gap-3">
+                    <div className="grid grid-cols-4 gap-3">
                       {completedBooks.map((book) => {
                         const isSelected = selectedBook?.id === book.id;
 
@@ -331,7 +331,7 @@ export const Library = () => {
                   Reading
                 </span>
                 <div className="relative w-full">
-                  <div className="max-h-[52vh] overflow-y-auto pb-4 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                  <div className="max-h-[52vh] overflow-y-auto pb-[calc(52vh-288px)] scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                     <div className="flex flex-col gap-5">
                       {currentBooks.map((book) => {
                         const isSelected = selectedBook?.id === book.id;
@@ -362,7 +362,7 @@ export const Library = () => {
 
             {/* Reading Soon - Desktop: 4 columns, scrollable */}
             {nextBooks.length > 0 && (
-              <div className="flex flex-col gap-4 w-[600px] shrink-0 ml-[60px]">
+              <div className="flex flex-col gap-3 w-[600px] shrink-0 ml-[60px]">
                 <div className="flex items-center justify-start gap-3">
                   {/* V2 'text-secondary' */}
                   <span className="whitespace-nowrap text-xs uppercase tracking-[0.45em] text-secondary">
@@ -370,7 +370,7 @@ export const Library = () => {
                   </span>
                 </div>
                 <div className="relative">
-                  <div className="max-h-[52vh] overflow-y-auto pb-12 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                  <div className="max-h-[52vh] overflow-y-auto pb-[calc(52vh-210px)] scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                     <div className="grid grid-cols-4 gap-5">
                       {nextBooks.map((book) => {
                         const isSelected = selectedBook?.id === book.id;
@@ -399,7 +399,7 @@ export const Library = () => {
               </div>
             )}
 
-            <div className="flex flex-1 flex-col gap-4 lg:pl-4">
+            <div className="flex flex-1 flex-col gap-3 lg:pl-4">
               <div className="flex items-center justify-end gap-3">
                 {/* V2 'text-secondary' */}
                 <span className="whitespace-nowrap text-xs uppercase tracking-[0.45em] text-secondary">
@@ -407,7 +407,7 @@ export const Library = () => {
                 </span>
               </div>
               <div className="relative">
-                <div className="max-h-[52vh] overflow-y-auto pb-12 scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                <div className="max-h-[52vh] overflow-y-auto pb-[calc(52vh-210px)] scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                   {completedBooks.length > 0 ? (
                     // Fixed 5 columns, right-aligned, wider books
                     <div className="grid grid-cols-5 gap-5 ml-auto max-w-fit">

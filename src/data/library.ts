@@ -283,7 +283,7 @@ export const libraryBooks: LibraryBook[] = [
     spineColor: "#1D171B",
     spineTextColor: "#FFFFFF",
     accentColor: "#22D3EE",
-    status: "completed",
+    status: "current",
     description:
       "Earth scrambles to devise deterrence strategies as the Trisolaran invasion draws ever closer.",
     pageCount: 528,

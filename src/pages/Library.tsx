@@ -48,13 +48,15 @@ export const Library = () => {
       className="flex min-h-screen md:h-screen flex-col md:overflow-hidden p-6 pb-16 md:p-16 text-primary"
     >
       {/* Page Title */}
-      <div className="pt-16 md:-mt-8 md:pt-0 pb-8 md:pb-12 md:pl-8">
-        <h1 className="mb-1 font-serif text-5xl tracking-tight text-primary">
-          Library
-        </h1>
-        <p className="font-serif text-sm text-secondary">
-          a collection of books i've read, am reading, and am yet to read
-        </p>
+      <div className="flex items-center justify-center md:justify-start px-16 md:px-0 pt-6 md:-mt-8 md:pt-0 pb-8 md:pb-12 md:pl-8 pointer-events-none md:pointer-events-auto">
+        <div className="text-center md:text-left">
+          <h1 className="mb-1 font-serif text-2xl md:text-5xl tracking-tight text-primary">
+            Library
+          </h1>
+          <p className="hidden md:block font-serif text-sm text-secondary">
+            a collection of books i've read, am reading, and am yet to read
+          </p>
+        </div>
       </div>
 
       {/* Removed V1 <MobileNav /> and <header /> */}

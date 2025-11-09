@@ -104,13 +104,15 @@ export const Thoughts = () => {
       </div>
 
       {/* Page Title - floats on top */}
-      <div className="relative pt-16 md:-mt-8 md:pt-0 pb-8 md:pb-12 md:pl-8 z-50 pointer-events-none">
-        <h1 className="mb-1 font-serif text-5xl tracking-tight text-primary">
-          Thoughts
-        </h1>
-        <p className="font-serif text-sm text-secondary">
-          sometimes substantive, sometimes not so much. all of it captured in the knowledge graph on the right
-        </p>
+      <div className="relative flex items-center justify-center md:justify-start px-16 md:px-0 pt-6 md:-mt-8 md:pt-0 pb-8 md:pb-12 md:pl-8 z-50 pointer-events-none">
+        <div className="text-center md:text-left">
+          <h1 className="mb-1 font-serif text-2xl md:text-5xl tracking-tight text-primary">
+            Thoughts
+          </h1>
+          <p className="hidden md:block font-serif text-sm text-secondary">
+            sometimes substantive, sometimes not so much. all of it captured in the knowledge graph on the right
+          </p>
+        </div>
       </div>
     </div>
   );

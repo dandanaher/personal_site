@@ -258,11 +258,18 @@ export const Projects = () => {
       </div>
 
       {/* Mobile: Single column layout with expandable cards */}
-      <div className="md:hidden flex flex-col h-full overflow-y-auto">
+      <div className="md:hidden flex flex-col flex-1 overflow-y-auto">
         {/* V1 MobileNav removed, V2's page container provides scroll */}
 
+        {/* Page Title - in-line with buttons */}
+        <div className="flex items-center justify-center px-16 pt-6 pb-8 pointer-events-none">
+          <h1 className="font-serif text-2xl tracking-tight text-primary">
+            Projects
+          </h1>
+        </div>
+
         {/* Projects list with inline details */}
-        <div className="flex-1 px-6 py-6 pt-20">
+        <div className="flex-1 px-6 pb-6">
           <div className="space-y-6">
             {projectEntries.map((project, index) => (
               <div key={project.title} className="flex flex-col gap-4">
@@ -350,11 +357,10 @@ export const Projects = () => {
                                 <button
                                   key={index}
                                   onClick={() => setActiveImageIndex(index)}
-                                  // V2: bg-primary, bg-secondary/50
-                                  className={`h-2 w-2 rounded-full transition-all ${
+                                  className={`h-2 w-2 rounded-full transition-all duration-300 ${
                                     index === activeImageIndex
-                                      ? "w-6 bg-primary"
-                                      : "bg-secondary/50"
+                                      ? "w-8 bg-white"
+                                      : "bg-white/50 hover:bg-white/75"
                                   }`}
                                   aria-label={`View image ${index + 1}`}
                                 />

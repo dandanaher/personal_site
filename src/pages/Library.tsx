@@ -45,7 +45,7 @@ export const Library = () => {
   return (
     // Replaced V1 layout wrapper with V2's page padding and text colors
     <div
-      className="flex h-screen flex-col overflow-hidden p-6 md:p-16 text-primary"
+      className="flex min-h-screen flex-col p-6 pb-16 md:p-16 text-primary"
     >
       {/* Page Title */}
       <div className="pt-16 md:-mt-8 md:pt-0 pb-8 md:pb-12 md:pl-8">

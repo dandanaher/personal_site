@@ -331,7 +331,7 @@ export const Library = () => {
                   Reading
                 </span>
                 <div className="relative w-full">
-                  <div className="max-h-[52vh] overflow-y-auto pb-[calc(52vh-288px)] scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                  <div className="max-h-[52vh] overflow-y-auto pb-[calc(52vh-230px)] scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                     <div className="flex flex-col gap-5">
                       {currentBooks.map((book) => {
                         const isSelected = selectedBook?.id === book.id;

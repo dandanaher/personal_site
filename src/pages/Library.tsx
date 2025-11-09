@@ -45,19 +45,26 @@ export const Library = () => {
   return (
     // Replaced V1 layout wrapper with V2's page padding and text colors
     <div
-      className="flex min-h-screen md:h-screen flex-col md:overflow-hidden p-6 pb-16 md:p-16 text-primary"
+      className="flex min-h-screen md:h-screen flex-col md:overflow-hidden p-6 pb-16 md:p-16 text-primary relative"
     >
-      {/* Page Title */}
-      <div className="flex items-center justify-center md:justify-start px-16 md:px-0 pt-3 md:-mt-8 md:pt-0 pb-8 md:pb-12 md:pl-8 pointer-events-none md:pointer-events-auto">
-        <div className="text-center md:text-left">
-          <h1 className="mb-1 font-serif text-2xl md:text-5xl tracking-tight text-primary">
-            Library
-          </h1>
-          <p className="hidden md:block font-serif text-sm text-secondary">
-            a collection of books i've read, am reading, and am yet to read
-          </p>
+      {/* Page Title - Fixed on mobile, static on desktop */}
+      <div className="fixed md:relative top-0 left-0 right-0 md:top-auto md:left-auto md:right-auto z-40 md:z-auto bg-background md:bg-transparent">
+        <div className="flex items-center justify-center md:justify-start px-16 md:px-0 pt-6 md:-mt-8 md:pt-0 pb-4 md:pb-12 md:pl-8 pointer-events-none md:pointer-events-auto">
+          <div className="text-center md:text-left">
+            <h1 className="mb-1 font-serif text-2xl md:text-5xl tracking-tight text-primary">
+              Library
+            </h1>
+            <p className="hidden md:block font-serif text-sm text-secondary">
+              a collection of books i've read, am reading, and am yet to read
+            </p>
+          </div>
         </div>
+        {/* Fade gradient below title - mobile only */}
+        <div className="md:hidden h-12 w-full bg-gradient-to-b from-background to-transparent pointer-events-none" />
       </div>
+
+      {/* Spacer for fixed header on mobile */}
+      <div className="md:hidden h-20" />
 
       {/* Removed V1 <MobileNav /> and <header /> */}
       <section className="flex flex-col gap-4 md:gap-7">

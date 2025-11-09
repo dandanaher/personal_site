@@ -57,8 +57,21 @@ export const Thoughts = () => {
 
   return (
     <div className="relative h-screen pt-6 px-6 md:pt-16 md:px-16 text-primary overflow-hidden">
-      {/* Top fade overlay - extends across entire screen width */}
-      <div className="fixed top-0 left-0 right-0 h-48 pointer-events-none z-40 fade-overlay transition-colors duration-300" />
+      {/* Page Title - fixed on mobile, relative on desktop */}
+      <div className="fixed md:relative top-0 left-0 right-0 md:top-auto md:left-auto md:right-auto pt-3 md:-mt-8 md:pt-0 pb-4 md:pb-12 md:pl-8 z-50 bg-background md:bg-transparent pointer-events-none">
+        <div className="flex items-center justify-center md:justify-start px-16 md:px-0">
+          <div className="text-center md:text-left">
+            <h1 className="mb-1 font-serif text-2xl md:text-5xl tracking-tight text-primary">
+              Thoughts
+            </h1>
+            <p className="hidden md:block font-serif text-sm text-secondary">
+              sometimes substantive, sometimes not so much. all of it captured in the knowledge graph on the right
+            </p>
+          </div>
+        </div>
+        {/* Fade gradient below title - mobile only */}
+        <div className="md:hidden h-12 w-full bg-gradient-to-b from-background to-transparent" />
+      </div>
 
       {/* Two-column layout on larger screens */}
       <div className="absolute inset-0 px-6 md:px-16 flex overflow-visible">
@@ -70,7 +83,7 @@ export const Thoughts = () => {
             msOverflowStyle: 'none',
           }}
         >
-          <div className="space-y-6 pt-56 md:pt-52">
+          <div className="space-y-6 pt-24 md:pt-52">
             {sortedThoughts.length > 0 ? (
               sortedThoughts.map((thought) => (
                 <ThoughtCard
@@ -100,18 +113,6 @@ export const Thoughts = () => {
               highlightedId={expandedId}
             />
           </div>
-        </div>
-      </div>
-
-      {/* Page Title - floats on top */}
-      <div className="relative flex items-center justify-center md:justify-start px-16 md:px-0 pt-3 md:-mt-8 md:pt-0 pb-8 md:pb-12 md:pl-8 z-50 pointer-events-none">
-        <div className="text-center md:text-left">
-          <h1 className="mb-1 font-serif text-2xl md:text-5xl tracking-tight text-primary">
-            Thoughts
-          </h1>
-          <p className="hidden md:block font-serif text-sm text-secondary">
-            sometimes substantive, sometimes not so much. all of it captured in the knowledge graph on the right
-          </p>
         </div>
       </div>
     </div>

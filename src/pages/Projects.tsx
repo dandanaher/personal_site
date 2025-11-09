@@ -258,18 +258,22 @@ export const Projects = () => {
       </div>
 
       {/* Mobile: Single column layout with expandable cards */}
-      <div className="md:hidden flex flex-col flex-1 overflow-y-auto">
+      <div className="md:hidden flex flex-col flex-1 overflow-y-auto relative">
         {/* V1 MobileNav removed, V2's page container provides scroll */}
 
-        {/* Page Title - in-line with buttons */}
-        <div className="flex items-center justify-center px-16 pt-6 pb-8 pointer-events-none">
-          <h1 className="font-serif text-2xl tracking-tight text-primary">
-            Projects
-          </h1>
+        {/* Page Title - fixed with fade */}
+        <div className="fixed top-0 left-0 right-0 z-40 bg-background">
+          <div className="flex items-center justify-center px-16 pt-6 pb-4 pointer-events-none">
+            <h1 className="font-serif text-2xl tracking-tight text-primary">
+              Projects
+            </h1>
+          </div>
+          {/* Fade gradient below title */}
+          <div className="h-12 w-full bg-gradient-to-b from-background to-transparent pointer-events-none" />
         </div>
 
         {/* Projects list with inline details */}
-        <div className="flex-1 px-6 pb-6">
+        <div className="flex-1 px-6 pb-6 pt-24">
           <div className="space-y-6">
             {projectEntries.map((project, index) => (
               <div key={project.title} className="flex flex-col gap-4">

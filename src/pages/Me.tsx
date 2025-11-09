@@ -693,7 +693,7 @@ export const Me = () => {
   }, [isPhysicsMode, isDragging, usesAccelerometer]); // Restored original dependencies
 
   return (
-    <div className="m-0 max-w-[1280px] w-full py-8 px-6 md:p-16 md:pl-20 text-primary">
+    <div className="m-0 max-w-[1280px] w-full py-8 px-6 pb-16 md:p-16 md:pl-20 text-primary">
       <LondonWidget />
       <audio ref={audioRef} src="/sounds/bubble-pop.mp3" preload="auto" />
       <div className="mb-12 flex flex-col items-center text-center gap-6 md:flex-row md:items-start md:text-left md:gap-8">

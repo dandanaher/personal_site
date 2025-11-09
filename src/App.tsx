@@ -26,14 +26,14 @@ function App() {
       if (isPortrait && isMobile) {
         // Zoom out more on portrait mobile to fit all orbs
         setCameraSettings({
-          position: [0, 2, 14],
-          fov: 60
+          position: [0, 2, 18],
+          fov: 65
         });
       } else if (isMobile) {
         // Moderate zoom for landscape mobile
         setCameraSettings({
-          position: [0, 2, 12],
-          fov: 55
+          position: [0, 2, 14],
+          fov: 60
         });
       } else {
         // Default for desktop

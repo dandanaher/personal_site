@@ -91,7 +91,7 @@ const LondonWidgetComponent = () => {
   console.log('[LondonWidget] Rendering with weather:', weather);
 
   return (
-    <div className="fixed top-4 right-4 z-[500] text-right md:top-16 md:right-32">
+    <div className="fixed top-16 right-4 z-[500] text-right md:top-16 md:right-32">
       <div className="mb-1 text-sm text-secondary">London</div>
       <div className="mb-1 text-2xl md:text-[2rem] font-normal leading-tight text-primary">{time}</div>
       {weather && (
